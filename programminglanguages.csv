@@ -1,0 +1,28 @@
+Name;Erscheinungsjahr;Entwickler;Typisierung;Paradigmen;StackoverflowTags
+Ada;1980;Jean Ichbiah;statisch,explizit,stark;imperativ,strukturiert,objektorientiert;1237
+BASIC;1964;John G. Kemeny,Thomas E. Kurtz;keine;imperativ;513
+C;1972;	Dennis Ritchie;statisch,explizit,stark;imperativ,strukturiert;241709
+C++;1985;Bjarne Stroustrup;statisch,explizit,stark;Multiparadigmen;497011
+C#;2001;Anders Hejlsberg;statisch,stark,explizit;Multiparadigmen;1057423
+Delphi;1986;Niklaus Wirth,Anders Hejlsberg;stark,explizit,statisch;prozedural,objektorientiert;38021
+Erlang;1987;Ericsson;dynamisch,stark;Funktional,Concurrent;7177
+Fortran;1957;John W. Backus;statisch,stark;prozedural,imperativ,strukturiert,objektorientiert;7094
+Groovy;2003;The Groovy Project;stark,statisch,dynamisch;objektorientiert,teilweise deklarativ,imperativ;16643
+Haskell;1990;Simon Peyton Jones,Paul Hudak,Philip Wadler;statisch,stark,Typinferenz;funktional,nicht-strikt,modular,deklarativ;31329
+INTERCAL;1972;Donald R. Woods,James M. Lyon;keine;imperativ;2
+JavaScript;1995;Brendan Eich;schwach,dynamisch,duck;Multiparadigmen;1317563
+Kotlin;2016;JetBrains;statisch,stark;objektorientiert;2046
+Luna;2011;Richard Gordon Faika;statisch;Multiparadigmen;0
+Miranda;1985;David Turner;statisch,stark;funktional,nicht-strikt,deklarativ;17
+NewtonScript;1993;Walter Smith;keine;prototypenbasiert;3
+Objective-C;1980;Brad Cox,Tom Love;stark,statisch,explizit,dynamisch;Multiparadigmen;273007
+Oberon;1991;Niklaus Wirth,Jürg Gutknecht;statisch;imperativ,strukturiert,objektorientiert;10
+PHP;1995;Rasmus Lerdorf;schwach,dynamisch;imperativ,objektorientiert,funktional,reflexiv,prozedural;1034846
+Python;1991;Guido van Rossum;stark,dynamisch,duck;Multiparadigmen;698807
+QML;2009;Qt Project;stark,dynamisch;deklarativ,reaktiv;5104
+Ruby;1995;Yukihiro Matsumoto;stark,dynamisch,duck;Multiparadigmen;176431
+Smalltalk;1972;Alan Kay,Dan Ingalls,Adele Goldberg,Ted Kaehler,Scott Wallace,Peter Deutsch;dynamisch;Multiparadigmen;1303
+Scala;2001;Martin Odersky;statisch;objektorientiert,funktional,imperativ;62222
+TypeScript;2012;Anders Hejlsberg;stark,schwach,duck,dynamisch,statisch,explizit,implizit;funktional,imperativ,objektorientiert,strukturiert,skripting;23187
+Whitespace;2002;Edwin Brady,Chris Morris;imperativ;unknown;2912
+Zonnon;2002;Jürg Gutknecht;stark;imperativ,strukturiert,objektorientiert,modular;0

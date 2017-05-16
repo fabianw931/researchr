@@ -1,0 +1,87 @@
+#programmingLanguage-save-button {
+    -fx-background-image: url("/ch/fhnw/researchr/resources/img/save.png");
+}
+#programmingLanguage-undo-button {
+    -fx-background-image: url("/ch/fhnw/researchr/resources/img/undo.png.png");
+}
+#programmingLanguage-redo-button {
+    -fx-background-image: url("/ch/fhnw/researchr/resources/img/redo.png");
+}
+#programmingLanguage-web-button {
+    -fx-background-image: url("/ch/fhnw/researchr/resources/img/web.png.png");
+}
+#programmingLanguage-add-button {
+    -fx-background-image: url("/ch/fhnw/researchr/resources/img/add.png");
+}
+#programmingLanguage-remove-button {
+    -fx-background-image: url("/ch/fhnw/researchr/resources/img/remove.png");
+}
+#programmingLanguage-detail-wo {
+	-fx-font: 20px Tahoma;
+}
+#programmingLanguage-detail-map {
+	-fx-alignment: CENTER;
+}
+#programmingLanguage-detail-chart {
+	-fx-alignment: CENTER-RIGHT;
+}
+
+.button {
+    -fx-min-height: 50px;
+    -fx-min-width: 50px;
+    -fx-background-size: 50px 50px;
+    -fx-background-repeat: no-repeat;    
+	-fx-content-display:GRAPHIC_ONLY;
+	-fx-background-color: #EFEFF5;
+	-fx-background-radius: 0px;
+	-fx-border-color: #EFEFF5;
+	-fx-border-insets: 3;
+	-fx-border-radius:3px;
+	-fx-border-style: solid;
+	-fx-border-width: 2px;
+}
+.menu {
+	-fx-background-color: #efeff5;
+}
+.searchbox {
+	-fx-alignment: CENTER-RIGHT;
+	-fx-font: 20px Tahoma;
+}
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #efeff5;
+    -fx-text-fill: black;
+}
+.list-cell:even { 
+    -fx-background-color: white;
+}
+.list-cell:odd {
+    -fx-background-color: F8F8FF;
+}
+.list-cell:filled:hover {
+    -fx-background-color: #e5e5e9;
+}
+.label {
+    -fx-padding: 5.0 10.0 5.0 10.0;
+    -fx-hgap: 8;
+    -fx-vgap: 8;
+}
+.text-field {
+	-fx-min-width: 300px;
+}
+.list-cell {
+    -fx-cell-size: 60px;
+}
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+.text-field:focused {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+.root {
+    -fx-font: 15px Tahoma;
+}
+.splitter {
+	-fx-background-color: #efeff5;
+}
