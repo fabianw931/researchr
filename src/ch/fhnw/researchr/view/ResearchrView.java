@@ -31,8 +31,16 @@ public class ResearchrView extends BorderPane{
     */
     final private ResearchrModel model;
 
-    private Button          button;
     private ListView<Color> listView;
+
+    private Button[] buttons;
+    
+    private Button newBtn;
+    private Button saveBtn;
+    private Button removeBtn;
+    private Button undoBtn;
+    private Button redoBtn;
+    private Button editBtn;
 
     public ResearchrView(ResearchrModel model) {
         this.model = model;
@@ -55,8 +63,47 @@ public class ResearchrView extends BorderPane{
     }
 
     private void initializeMenuBar(){
-        Image newBtn = new Image(getClass().getResourceAsStream("resources/img/add.png"));
-        button = new Button("This is cool", new ImageView(newBtn));
+
+        int imgSize = 30;
+
+        Image saveImg = new Image(getClass().getResourceAsStream("../resources/img/save.png"),
+                imgSize, imgSize, true,false);
+        saveBtn = new Button("", new ImageView(saveImg));
+
+        Image newImg = new Image(getClass().getResourceAsStream("../resources/img/add.png"),
+                imgSize, imgSize, true,false);
+        newBtn = new Button("", new ImageView(newImg));
+
+        Image removeImg = new Image(getClass().getResourceAsStream("../resources/img/remove.png"),
+                imgSize, imgSize, true,false);
+        removeBtn = new Button("", new ImageView(removeImg));
+
+        Image undoImg = new Image(getClass().getResourceAsStream("../resources/img/undo.png"),
+                imgSize, imgSize, true,false);
+        undoBtn = new Button("", new ImageView(undoImg));
+
+        Image redoImg = new Image(getClass().getResourceAsStream("../resources/img/redo.png"),
+                imgSize, imgSize, true,false);
+        redoBtn = new Button("", new ImageView(redoImg));
+
+        Image editImg = new Image(getClass().getResourceAsStream("../resources/img/web.png"),
+                imgSize, imgSize, true,false);
+        editBtn = new Button("", new ImageView(editImg));
+
+        buttons = new Button[]{
+                saveBtn,
+                newBtn,
+                removeBtn,
+                undoBtn,
+                redoBtn,
+                editBtn
+        };
+
+        for(Button b : buttons){
+            b.setStyle("-fx-background-radius: 0");
+
+        }
+
     }
 
     private void initializeSidePanel() {
@@ -67,7 +114,9 @@ public class ResearchrView extends BorderPane{
 
     private void layoutControls() {
 
-        ToolBar toolbar = new ToolBar(button);
+        ToolBar toolbar = new ToolBar();
+        toolbar.getItems().addAll(buttons);
+
         setTop(toolbar);
     }
 }
