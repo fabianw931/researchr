@@ -1,49 +1,41 @@
 package ch.fhnw.researchr.view;
 
 import ch.fhnw.researchr.model.ResearchrModel;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 
 public class ResearchrView extends BorderPane{
 
-
-    /*
-    final private Stage stage;
-
-    public ResearchrView(Stage stage, ResearchrModel model){
-        this.stage = stage;
-        this.model = model;
-
-    }
-    public void start() {
-        stage.show();
-    }
-
-    public void stop() {
-        stage.hide();
-    }
-
-    */
     final private ResearchrModel model;
+
+    private SplitPane splitPane;
+    private ToolBar toolBar;
 
     private ListView<Color> listView;
 
     private Button[] buttons;
-    
+
     private Button newBtn;
     private Button saveBtn;
     private Button removeBtn;
     private Button undoBtn;
     private Button redoBtn;
-    private Button editBtn;
+    private Button exportBtn;
+    private Button importBtn;
+
+    private Label searchLbl;
+    private TextField searchField;
 
     public ResearchrView(ResearchrModel model) {
         this.model = model;
+        splitPane = new SplitPane();
 
         try {
 
@@ -57,38 +49,31 @@ public class ResearchrView extends BorderPane{
     }
 
     private void initializeControls() {
-        initializeMenuBar();
+        initializeToolBar();
         initializeSidePanel();
         initializePropertiesView();
     }
 
-    private void initializeMenuBar(){
+    private void layoutControls() {
+        layoutToolBar();
+        layoutSidePanel();
+        layoutPropertiesView();
 
-        int imgSize = 30;
+        setTop(toolBar);
+        setCenter(splitPane);
+    }
 
-        Image saveImg = new Image(getClass().getResourceAsStream("../resources/img/save.png"),
-                imgSize, imgSize, true,false);
-        saveBtn = new Button("", new ImageView(saveImg));
+    private void initializeToolBar(){
 
-        Image newImg = new Image(getClass().getResourceAsStream("../resources/img/add.png"),
-                imgSize, imgSize, true,false);
-        newBtn = new Button("", new ImageView(newImg));
+        String navFolder = "../resources/img/icons/";
 
-        Image removeImg = new Image(getClass().getResourceAsStream("../resources/img/remove.png"),
-                imgSize, imgSize, true,false);
-        removeBtn = new Button("", new ImageView(removeImg));
-
-        Image undoImg = new Image(getClass().getResourceAsStream("../resources/img/undo.png"),
-                imgSize, imgSize, true,false);
-        undoBtn = new Button("", new ImageView(undoImg));
-
-        Image redoImg = new Image(getClass().getResourceAsStream("../resources/img/redo.png"),
-                imgSize, imgSize, true,false);
-        redoBtn = new Button("", new ImageView(redoImg));
-
-        Image editImg = new Image(getClass().getResourceAsStream("../resources/img/web.png"),
-                imgSize, imgSize, true,false);
-        editBtn = new Button("", new ImageView(editImg));
+        saveBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "save.png"))));
+        newBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "add.png"))));
+        removeBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "remove.png"))));
+        undoBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "undo.png"))));
+        redoBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "redo.png"))));
+        exportBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "upload.png"))));
+        importBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "download.png"))));
 
         buttons = new Button[]{
                 saveBtn,
@@ -96,27 +81,45 @@ public class ResearchrView extends BorderPane{
                 removeBtn,
                 undoBtn,
                 redoBtn,
-                editBtn
+                exportBtn,
+                importBtn
         };
 
-        for(Button b : buttons){
-            b.setStyle("-fx-background-radius: 0");
-
-        }
+        searchLbl = new Label("Suche");
+        searchField = new TextField();
 
     }
 
     private void initializeSidePanel() {
+
     }
 
     private void initializePropertiesView() {
     }
 
-    private void layoutControls() {
+    private void layoutToolBar() {
+        final Pane space = new Pane();
+        HBox.setHgrow(
+                space,
+                Priority.ALWAYS
+        );
 
-        ToolBar toolbar = new ToolBar();
-        toolbar.getItems().addAll(buttons);
+        toolBar = new ToolBar();
+        toolBar.getItems().addAll(buttons);
+        toolBar.getItems().add(space);
+        toolBar.getItems().add(searchLbl);
+        toolBar.getItems().add(searchField);
 
-        setTop(toolbar);
     }
+
+    private void layoutSidePanel() {
+
+    }
+
+    private void layoutPropertiesView() {
+
+    }
+
+
+
 }
