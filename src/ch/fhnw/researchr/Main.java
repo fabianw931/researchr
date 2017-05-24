@@ -1,7 +1,6 @@
 package ch.fhnw.researchr;
 
-import ch.fhnw.researchr.model.ResearchrModel;
-import ch.fhnw.researchr.view.ResearchrView;
+import ch.fhnw.researchr.controller.ResearchrController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -19,16 +18,15 @@ public class Main extends Application{
         primaryStage.setMinWidth(1000);
             primaryStage.setMinHeight(600);
 
-            ResearchrModel model = new ResearchrModel();
-
-            BorderPane rootPanel = new ResearchrView(model);
+            ResearchrController controller = new ResearchrController();
+            BorderPane rootPanel = controller.getView();
 
             Scene scene = new Scene(rootPanel);
 
             String stylesheet = getClass().getResource("resources/css/style.css").toExternalForm();
             scene.getStylesheets().add(stylesheet);
 
-            primaryStage.titleProperty().bind(model.windowTitleProperty());
+            primaryStage.titleProperty();
             primaryStage.setScene(scene);
 
             primaryStage.show();

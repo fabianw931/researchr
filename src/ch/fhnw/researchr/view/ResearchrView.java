@@ -1,6 +1,6 @@
 package ch.fhnw.researchr.view;
 
-import ch.fhnw.researchr.model.ResearchrModel;
+import ch.fhnw.researchr.controller.ResearchrController;
 import javafx.scene.control.*;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 
 public class ResearchrView extends BorderPane{
 
-    final private ResearchrModel model;
+    final private ResearchrController controller;
 
     private SplitPane splitPane;
     private ToolBar toolBar;
@@ -27,14 +27,13 @@ public class ResearchrView extends BorderPane{
     private Button removeBtn;
     private Button undoBtn;
     private Button redoBtn;
-    private Button exportBtn;
-    private Button importBtn;
 
     private Label searchLbl;
     private TextField searchField;
 
-    public ResearchrView(ResearchrModel model) {
-        this.model = model;
+    public ResearchrView(ResearchrController controller) {
+        this.controller = controller;
+
         splitPane = new SplitPane();
 
         try {
@@ -64,7 +63,15 @@ public class ResearchrView extends BorderPane{
     }
 
     private void initializeToolBar(){
+        initializeButtons();
+        addButtonsToArray();
+        addEventHandlerToBtns();
+        initializeSearchField();
+    }
 
+
+
+    private void initializeButtons() {
         String navFolder = "../resources/img/icons/";
 
         saveBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "save.png"))));
@@ -72,22 +79,27 @@ public class ResearchrView extends BorderPane{
         removeBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "remove.png"))));
         undoBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "undo.png"))));
         redoBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "redo.png"))));
-        exportBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "upload.png"))));
-        importBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "download.png"))));
+    }
 
+    private void addButtonsToArray() {
         buttons = new Button[]{
                 saveBtn,
                 newBtn,
                 removeBtn,
                 undoBtn,
                 redoBtn,
-                exportBtn,
-                importBtn
         };
+    }
 
+    private void addEventHandlerToBtns() {
+        for(Button b : buttons){
+            b.setOnAction(controller);
+        }
+    }
+
+    private void initializeSearchField() {
         searchLbl = new Label("Suche");
         searchField = new TextField();
-
     }
 
     private void initializeSidePanel() {
@@ -120,6 +132,23 @@ public class ResearchrView extends BorderPane{
 
     }
 
+    public Button getNewBtn() {
+        return newBtn;
+    }
 
+    public Button getSaveBtn() {
+        return saveBtn;
+    }
 
+    public Button getRemoveBtn() {
+        return removeBtn;
+    }
+
+    public Button getUndoBtn() {
+        return undoBtn;
+    }
+
+    public Button getRedoBtn() {
+        return redoBtn;
+    }
 }

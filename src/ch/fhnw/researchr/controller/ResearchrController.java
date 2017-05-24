@@ -1,15 +1,41 @@
 package ch.fhnw.researchr.controller;
 
-import ch.fhnw.researchr.model.ResearchrModel;
 import ch.fhnw.researchr.view.ResearchrView;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 
-public class ResearchrController {
+public class ResearchrController implements EventHandler {
 
-    final private ResearchrView view;
-    final private ResearchrModel model;
+    private final ResearchrView view = new ResearchrView(this);
 
-    public ResearchrController(ResearchrView view, ResearchrModel model) {
-        this.view = view;
-        this.model = model;
+    public ResearchrController() {
+
+    }
+
+    private void addEventHandlers(){
+
+    }
+
+    @Override
+    public void handle(Event event) {
+        final Object source = event.getSource();
+
+        if (source.equals(view.getNewBtn())){
+
+        }else if (source.equals(view.getRedoBtn())){
+
+        }else if (source.equals(view.getSaveBtn())){
+
+        }else if (source.equals(view.getRemoveBtn())){
+
+        }else if (source.equals(view.getUndoBtn())){
+
+        }else if (source.equals(view.getRedoBtn())){
+
+        }
+    }
+
+    public ResearchrView getView() {
+        return view;
     }
 }
