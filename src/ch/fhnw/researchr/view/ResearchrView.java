@@ -2,14 +2,12 @@ package ch.fhnw.researchr.view;
 
 import ch.fhnw.researchr.controller.ResearchrController;
 import javafx.scene.control.*;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.paint.Color;
 
 public class ResearchrView extends BorderPane{
 
@@ -18,7 +16,7 @@ public class ResearchrView extends BorderPane{
     private SplitPane splitPane;
     private ToolBar toolBar;
 
-    private ListView<Color> listView;
+    private TableView<Object> tableView;
 
     private Button[] buttons;
 
@@ -103,7 +101,8 @@ public class ResearchrView extends BorderPane{
     }
 
     private void initializeSidePanel() {
-
+        initializeTableView();
+        layoutSidePanel();
     }
 
     private void initializePropertiesView() {
@@ -125,6 +124,14 @@ public class ResearchrView extends BorderPane{
     }
 
     private void layoutSidePanel() {
+
+    }
+
+    private void initializeTableView() {
+
+        tableView = new TableView<>();
+        tableView.setEditable(false);
+
 
     }
 

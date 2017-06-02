@@ -1,8 +1,7 @@
 package ch.fhnw.researchr.model;
 
-/**
- * Created by nadimsalloum on 23.05.17.
- */
+import org.json.*;
+
 public class FileHandler {
 
     private String saveFileLocation;
@@ -12,6 +11,14 @@ public class FileHandler {
     }
 
     public void importFromJSON() {
+
+        JSONObject obj = new JSONObject("../../../programminglanguages.json");
+        String pageName = obj.getJSONObject("pageInfo").getString("pageName");
+
+        JSONArray arr = obj.getJSONArray("posts");
+        for (int i = 0; i < arr.length(); i++){
+            String post_id = arr.getJSONObject(i).getString("post_id");
+        }
 
     }
 
