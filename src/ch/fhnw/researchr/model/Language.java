@@ -1,85 +1,121 @@
 package ch.fhnw.researchr.model;
 
-import java.util.List;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 
 public class Language {
 
-    /* name of the programming language */
-    private String name;
+    private IntegerProperty id;
+    private StringProperty name;
+    private IntegerProperty publishedYear;
+    private StringProperty developer;
+    private StringProperty typing;
+    private StringProperty paradigms;
+    private IntegerProperty stackoverflowTags;
 
-    /* the year the programming language was created */
-    private short year;
+    public Language(int id, String name, int publishedYear, String developer,
+                    String typing, String paradigms, int stackoverflowTags) {
 
-    /* developer of the programming language */
-    private String developer;
+        setId(id);
+        setName(name);
+        setPublishedYear(publishedYear);
+        setDeveloper(developer);
+        setTyping(typing);
+        setParadigms(paradigms);
+        setStackoverflowTags(stackoverflowTags);
 
-    /* type/style of the programming language
-    * a list of strings
-    * */
-    private List<String> typification;
+    }
 
-    /* paradigms of the programming language
-    * a list of Strings
-    * */
-    private List<String> paradigms;
+    public Language(int id, String name, String developer) {
+        setId(id);
+        setName(name);
+        setDeveloper(developer);
+    }
 
-    /* number of stackoverflow tags */
-    private int numberOfTags;
+    public Language() {
+    }
 
-    public Language(String name, short year, String developer, List<String> typification, List<String> paradigms, int numberOfTags) {
-        this.name = name;
-        this.year = year;
-        this.developer = developer;
-        this.typification = typification;
-        this.paradigms = paradigms;
-        this.numberOfTags = numberOfTags;
+    public int getId() {
+        return id.get();
+    }
+
+    public IntegerProperty idProperty() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
     }
 
     public String getName() {
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
-    public short getYear() {
-        return year;
+    public int getPublishedYear() {
+        return publishedYear.get();
     }
 
-    public void setYear(short year) {
-        this.year = year;
+    public IntegerProperty publishedYearProperty() {
+        return publishedYear;
+    }
+
+    public void setPublishedYear(int publishedYear) {
+        this.publishedYear.set(publishedYear);
     }
 
     public String getDeveloper() {
+        return developer.get();
+    }
+
+    public StringProperty developerProperty() {
         return developer;
     }
 
     public void setDeveloper(String developer) {
-        this.developer = developer;
+        this.developer.set(developer);
     }
 
-    public List<String> getTypification() {
-        return typification;
+    public String getTyping() {
+        return typing.get();
     }
 
-    public void setTypification(List<String> typification) {
-        this.typification = typification;
+    public StringProperty typingProperty() {
+        return typing;
     }
 
-    public List<String> getParadigms() {
+    public void setTyping(String typing) {
+        this.typing.set(typing);
+    }
+
+    public String getParadigms() {
+        return paradigms.get();
+    }
+
+    public StringProperty paradigmsProperty() {
         return paradigms;
     }
 
-    public void setParadigms(List<String> paradigms) {
-        this.paradigms = paradigms;
+    public void setParadigms(String paradigms) {
+        this.paradigms.set(paradigms);
     }
 
-    public int getNumberOfTags() {
-        return numberOfTags;
+    public int getStackoverflowTags() {
+        return stackoverflowTags.get();
     }
 
-    public void setNumberOfTags(int numberOfTags) {
-        this.numberOfTags = numberOfTags;
+    public IntegerProperty stackoverflowTagsProperty() {
+        return stackoverflowTags;
+    }
+
+    public void setStackoverflowTags(int stackoverflowTags) {
+        this.stackoverflowTags.set(stackoverflowTags);
     }
 }

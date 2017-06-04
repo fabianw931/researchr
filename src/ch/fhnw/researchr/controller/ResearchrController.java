@@ -1,12 +1,13 @@
 package ch.fhnw.researchr.controller;
 
+import ch.fhnw.researchr.model.LanguagePM;
 import ch.fhnw.researchr.view.ResearchrView;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 
 public class ResearchrController implements EventHandler {
 
-    private final ResearchrView view = new ResearchrView(this);
+    private final ResearchrView view = new ResearchrView(new LanguagePM());
 
     public ResearchrController() {
 

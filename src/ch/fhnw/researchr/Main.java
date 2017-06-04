@@ -1,7 +1,11 @@
 package ch.fhnw.researchr;
 
-import ch.fhnw.researchr.controller.ResearchrController;
+import ch.fhnw.researchr.model.LanguagePM;
+import ch.fhnw.researchr.view.ApplicationUI;
+import ch.fhnw.researchr.view.LanguageForm;
+import ch.fhnw.researchr.view.ResearchrView;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -15,22 +19,19 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        LanguagePM model = new LanguagePM();
         primaryStage.setMinWidth(1000);
-            primaryStage.setMinHeight(600);
+        primaryStage.setMinHeight(600);
+        Parent rootPanel = new ApplicationUI(model);
 
-            ResearchrController controller = new ResearchrController();
-            BorderPane rootPanel = controller.getView();
+        Scene scene = new Scene(rootPanel);
 
-            Scene scene = new Scene(rootPanel);
+        String stylesheet = getClass().getResource("resources/css/style.css").toExternalForm();
+        scene.getStylesheets().add(stylesheet);
 
-            String stylesheet = getClass().getResource("resources/css/style.css").toExternalForm();
-            scene.getStylesheets().add(stylesheet);
-
-            primaryStage.titleProperty();
-            primaryStage.setScene(scene);
-
-            primaryStage.show();
-
+        primaryStage.titleProperty();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     @Override

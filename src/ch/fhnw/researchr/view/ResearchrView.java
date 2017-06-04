@@ -1,8 +1,8 @@
 package ch.fhnw.researchr.view;
 
-import ch.fhnw.researchr.controller.ResearchrController;
 import ch.fhnw.researchr.model.FileHandler;
-import ch.fhnw.researchr.model.ProgrammingLanguage;
+import ch.fhnw.researchr.model.Language;
+import ch.fhnw.researchr.model.LanguagePM;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import javafx.collections.FXCollections;
@@ -18,12 +18,12 @@ import javafx.scene.layout.Priority;
 
 public class ResearchrView extends BorderPane{
 
-    final private ResearchrController controller;
+    private final LanguagePM model;
 
     private SplitPane splitPane;
     private ToolBar toolBar;
 
-    private TableView<ProgrammingLanguage> tableView;
+    private TableView<Language> tableView;
 
     private Button[] buttons;
 
@@ -38,8 +38,8 @@ public class ResearchrView extends BorderPane{
 
     private JsonArray jArr;
 
-    public ResearchrView(ResearchrController controller) {
-        this.controller = controller;
+    public ResearchrView(LanguagePM model) {
+        this.model = model;
 
         FileHandler fh = new FileHandler();
         jArr = fh.read();
@@ -79,7 +79,7 @@ public class ResearchrView extends BorderPane{
     private void initializeToolBar(){
         initializeButtons();
         addButtonsToArray();
-        addEventHandlerToBtns();
+       // addEventHandlerToBtns();
         initializeSearchField();
     }
 
@@ -105,11 +105,11 @@ public class ResearchrView extends BorderPane{
         };
     }
 
-    private void addEventHandlerToBtns() {
+    /*private void addEventHandlerToBtns() {
         for(Button b : buttons){
             b.setOnAction(controller);
         }
-    }
+    }*/
 
     private void initializeSearchField() {
         searchLbl = new Label("Suche");
@@ -134,37 +134,35 @@ public class ResearchrView extends BorderPane{
         JsonObject jObj;
         String navFolder = "../resources/img/icons/";
 
-        TableColumn<ProgrammingLanguage, String> langPicColumn = new TableColumn("Name");
+        TableColumn<Language, String> langPicColumn = new TableColumn("Name");
         langPicColumn.setMinWidth(200);
         langPicColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        TableColumn<ProgrammingLanguage, String> langInfoColumn = new TableColumn("Entwickler");
+        TableColumn<Language, String> langInfoColumn = new TableColumn("Entwickler");
         langInfoColumn.setMinWidth(200);
         langInfoColumn.setCellValueFactory(new PropertyValueFactory<>("developer"));
 
-        ObservableList<ProgrammingLanguage> itemList = FXCollections.observableArrayList();
+        ObservableList<Language> itemList = FXCollections.observableArrayList();
 
         while(i < jArr.size()) {
             jObj = jArr.get(i).getAsJsonObject();
-
+            i++;
             itemList.add(
-                    new ProgrammingLanguage(
+                    new Language(i,
                             jObj.get("Name").getAsString(),
                             jObj.get("Entwickler").getAsString()
                         )
                     );
-
-            i++;
         }
 
-        tableView = new TableView<ProgrammingLanguage>();
+        tableView = new TableView<Language>();
         tableView.setItems(itemList);
         tableView.getColumns().addAll(langPicColumn, langInfoColumn);
 
     }
 
     private void addTableViewListeners() {
-        tableView.
+      //  tableView.
 
     }
 
