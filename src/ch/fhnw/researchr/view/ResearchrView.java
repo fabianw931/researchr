@@ -1,7 +1,14 @@
 package ch.fhnw.researchr.view;
 
 import ch.fhnw.researchr.controller.ResearchrController;
+import ch.fhnw.researchr.model.FileHandler;
+import ch.fhnw.researchr.model.ProgrammingLanguage;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -16,7 +23,7 @@ public class ResearchrView extends BorderPane{
     private SplitPane splitPane;
     private ToolBar toolBar;
 
-    private TableView<Object> tableView;
+    private TableView<ProgrammingLanguage> tableView;
 
     private Button[] buttons;
 
@@ -29,8 +36,13 @@ public class ResearchrView extends BorderPane{
     private Label searchLbl;
     private TextField searchField;
 
+    private JsonArray jArr;
+
     public ResearchrView(ResearchrController controller) {
         this.controller = controller;
+
+        FileHandler fh = new FileHandler();
+        jArr = fh.read();
 
         splitPane = new SplitPane();
 
@@ -57,6 +69,10 @@ public class ResearchrView extends BorderPane{
         layoutPropertiesView();
 
         setTop(toolBar);
+
+        //todo change stuff here no tableview
+        setLeft(tableView);
+
         setCenter(splitPane);
     }
 
@@ -103,6 +119,53 @@ public class ResearchrView extends BorderPane{
     private void initializeSidePanel() {
         initializeTableView();
         layoutSidePanel();
+        fillTableView();
+        addTableViewListeners();
+    }
+
+    private void initializeTableView() {
+
+
+        //TODO splitpane stuff
+    }
+
+    private void fillTableView() {
+        int i = 0;
+        JsonObject jObj;
+        String navFolder = "../resources/img/icons/";
+
+        TableColumn<ProgrammingLanguage, String> langPicColumn = new TableColumn("Name");
+        langPicColumn.setMinWidth(200);
+        langPicColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<ProgrammingLanguage, String> langInfoColumn = new TableColumn("Entwickler");
+        langInfoColumn.setMinWidth(200);
+        langInfoColumn.setCellValueFactory(new PropertyValueFactory<>("developer"));
+
+        ObservableList<ProgrammingLanguage> itemList = FXCollections.observableArrayList();
+
+        while(i < jArr.size()) {
+            jObj = jArr.get(i).getAsJsonObject();
+
+            itemList.add(
+                    new ProgrammingLanguage(
+                            jObj.get("Name").getAsString(),
+                            jObj.get("Entwickler").getAsString()
+                        )
+                    );
+
+            i++;
+        }
+
+        tableView = new TableView<ProgrammingLanguage>();
+        tableView.setItems(itemList);
+        tableView.getColumns().addAll(langPicColumn, langInfoColumn);
+
+    }
+
+    private void addTableViewListeners() {
+        tableView.
+
     }
 
     private void initializePropertiesView() {
@@ -127,13 +190,6 @@ public class ResearchrView extends BorderPane{
 
     }
 
-    private void initializeTableView() {
-
-        tableView = new TableView<>();
-        tableView.setEditable(false);
-
-
-    }
 
     private void layoutPropertiesView() {
 
