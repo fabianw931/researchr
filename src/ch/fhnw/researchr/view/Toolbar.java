@@ -2,6 +2,8 @@ package ch.fhnw.researchr.view;
 
 
 import ch.fhnw.researchr.model.LanguagePM;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -73,17 +75,23 @@ public class Toolbar extends HBox implements ViewMixin {
                 space,
                 Priority.ALWAYS
         );
-
-        this.getChildren().addAll(saveBtn, newBtn, removeBtn, undoBtn, redoBtn, space, searchLabel, searchField);
-
-    //    this.setHgrow(button2, Priority.ALWAYS);
-    //    button1.setMaxWidth(Double.MAX_VALUE);
-     //   button2.setMaxWidth(Double.MAX_VALUE);
-       // this.getChildren().addAll(toolBar);
+        getChildren().addAll(saveBtn, newBtn, removeBtn, undoBtn, redoBtn, space, searchLabel, searchField);
     }
 
     @Override
     public void addBindings() {
+        undoBtn.disableProperty().bind(model.disabledUndoProperty());
+        redoBtn.disableProperty().bind(model.disabledRedoProperty());
+
+    }
+
+    @Override
+    public void addEventHandlers() {
+        saveBtn.setOnAction(event -> model.save());
+        newBtn.setOnAction(event -> model.addNew());
+        removeBtn.setOnAction(event -> model.remove());
+        undoBtn.setOnAction(event -> model.undo());
+        redoBtn.setOnAction(event -> model.redo());
     }
 
     @Override
