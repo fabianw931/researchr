@@ -38,7 +38,7 @@ public class LanguagePM {
         languages.addAll(languageList);
 
         disabledUndo.bind(Bindings.isEmpty(undoStack));
-        disabledUndo.bind(Bindings.isEmpty(redoStack));
+        disabledRedo.bind(Bindings.isEmpty(redoStack));
 
 
         selectedLanguageIdProperty().addListener((observable, oldValue, newValue) -> {

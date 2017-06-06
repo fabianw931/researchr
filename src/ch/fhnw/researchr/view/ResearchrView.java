@@ -120,6 +120,7 @@ public class ResearchrView extends BorderPane{
         initializeTableView();
         layoutSidePanel();
         fillTableView();
+
         addTableViewListeners();
     }
 
@@ -133,7 +134,6 @@ public class ResearchrView extends BorderPane{
         int i = 0;
         JsonObject jObj;
         String navFolder = "../resources/img/icons/";
-
         TableColumn<Language, String> langPicColumn = new TableColumn("Name");
         langPicColumn.setMinWidth(200);
         langPicColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
