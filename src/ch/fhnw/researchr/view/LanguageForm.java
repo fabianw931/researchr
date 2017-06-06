@@ -78,13 +78,12 @@ public class LanguageForm extends GridPane implements ViewMixin {
     public void addBindings() {
         Language proxy = model.getLanguageProxy();
 
-        /*
         nameField.textProperty().bindBidirectional(proxy.nameProperty());
         publishedYearField.textProperty().bindBidirectional(proxy.publishedYearProperty(), new NumberStringConverter());
         developerField.textProperty().bindBidirectional(proxy.developerProperty());
         typingField.textProperty().bindBidirectional(proxy.typingProperty());
         paradigmsField.textProperty().bindBidirectional(proxy.paradigmsProperty());
         stackoverflowTagsField.textProperty().bindBidirectional(proxy.stackoverflowTagsProperty(), new NumberStringConverter());
-        */
+
     }
 }

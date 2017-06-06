@@ -1,17 +1,19 @@
 package ch.fhnw.researchr.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Language {
 
-    private IntegerProperty id;
-    private StringProperty name;
-    private IntegerProperty publishedYear;
-    private StringProperty developer;
-    private StringProperty typing;
-    private StringProperty paradigms;
-    private IntegerProperty stackoverflowTags;
+    private IntegerProperty id = new SimpleIntegerProperty();
+    private StringProperty name = new SimpleStringProperty();
+    private IntegerProperty publishedYear = new SimpleIntegerProperty();
+    private StringProperty developer = new SimpleStringProperty();
+    private StringProperty typing = new SimpleStringProperty();
+    private StringProperty paradigms = new SimpleStringProperty();
+    private IntegerProperty stackoverflowTags = new SimpleIntegerProperty();
 
     public Language(int id, String name, int publishedYear, String developer,
                     String typing, String paradigms, int stackoverflowTags) {

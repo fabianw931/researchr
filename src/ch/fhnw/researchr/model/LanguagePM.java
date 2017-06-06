@@ -21,64 +21,47 @@ public class LanguagePM {
     private final ObservableList<Command> undoStack = FXCollections.observableArrayList();
     private final ObservableList<Command> redoStack = FXCollections.observableArrayList();
 
-    private ChangeListener<String> changeNameListener;
-
     private BooleanProperty disabledUndo = new SimpleBooleanProperty();
     private BooleanProperty disabledRedo = new SimpleBooleanProperty();
+
+    private final ChangeListener propertyChangeListenerForUndoSupport = (observable, oldValue, newValue) -> {
+        redoStack.clear();
+        undoStack.add(0, new ValueChangeCommand(this, (Property) observable, oldValue, newValue));
+    };
 
     public LanguagePM() {
         this(getLanguages());
     }
 
     public LanguagePM(List<Language> languageList) {
+
         languages.addAll(languageList);
 
         disabledUndo.bind(Bindings.isEmpty(undoStack));
         disabledUndo.bind(Bindings.isEmpty(redoStack));
 
-        /*
-        undoStack.addListener((l, o, n) -> {
-            disabledUndo.set(undoStack.isEmpty())
-        });
-        */
 
         selectedLanguageIdProperty().addListener((observable, oldValue, newValue) -> {
                     Language oldSelection = getLanguage(oldValue.intValue());
                     Language newSelection = getLanguage(newValue.intValue());
 
-                    if (oldSelection != null) {
-                        languageProxy.idProperty().unbindBidirectional(oldSelection.idProperty());
-                        languageProxy.nameProperty().unbindBidirectional(oldSelection.nameProperty());
-                        languageProxy.publishedYearProperty().unbindBidirectional(oldSelection.publishedYearProperty());
-                        languageProxy.developerProperty().unbindBidirectional(oldSelection.developerProperty());
-                        languageProxy.typingProperty().unbindBidirectional(oldSelection.typingProperty());
-                        languageProxy.paradigmsProperty().unbindBidirectional(oldSelection.paradigmsProperty());
-                        languageProxy.stackoverflowTagsProperty().unbindBidirectional(oldSelection.stackoverflowTagsProperty());
 
-                        oldSelection.nameProperty().removeListener(changeNameListener);
+                    if (oldSelection != null) {
+                        unbindFromProxy(oldSelection);
+                        disableUndoSupport(oldSelection);
                     }
 
                     if (newSelection != null) {
-                        languageProxy.idProperty().bindBidirectional(newSelection.idProperty());
-
-
-                        changeNameListener = (obj, oldVal, newVal) -> {
-                            Command cmd = new ChangeNameCommand(this, newSelection, oldVal, newVal);
-
-                            undoStack.add(0, cmd);
-                            redoStack.clear();
-                        };
-                        newSelection.nameProperty().addListener(changeNameListener);
-                        languageProxy.nameProperty().bindBidirectional(newSelection.nameProperty());
-
-                        languageProxy.publishedYearProperty().bindBidirectional(newSelection.publishedYearProperty());
-                        languageProxy.developerProperty().bindBidirectional(newSelection.developerProperty());
-                        languageProxy.typingProperty().bindBidirectional(newSelection.typingProperty());
-                        languageProxy.paradigmsProperty().bindBidirectional(newSelection.paradigmsProperty());
-                        languageProxy.stackoverflowTagsProperty().bindBidirectional(newSelection.stackoverflowTagsProperty());
+                        bindToProxy(newSelection);
+                        enableUndoSupport(newSelection);
                     }
+
                 }
         );
+
+        setSelectedLanguageId(1);
+
+        selectedLanguageIdProperty().addListener(propertyChangeListenerForUndoSupport);
     }
 
     public final Language getLanguageProxy() {
@@ -93,7 +76,13 @@ public class LanguagePM {
     }
 
     private static List<Language> getLanguages() {
-        return Arrays.asList();
+        return Arrays.asList(
+                new Language(1, "PHP", 1990, "dude", "ayy", "lmao", 1995),
+                new Language(1, "Java", 1990, "dude", "ayy", "lmao", 1995),
+                new Language(1, "C#", 1990, "dude", "ayy", "lmao", 1995),
+                new Language(1, "C", 1990, "dude", "ayy", "lmao", 1995),
+                new Language(1, "Haskell", 1990, "dude", "ayy", "lmao", 1995),
+                new Language(1, "Javascript", 1990, "dude", "ayy", "lmao", 1995));
     }
 
     public ObservableList<Language> languages() {
@@ -122,6 +111,12 @@ public class LanguagePM {
 
     public void setSelectedLanguageId(int selectedLanguageId) {
         this.selectedLanguageId.set(selectedLanguageId);
+    }
+
+    public <T> void setPropertyValueWithoutUndoSupport(Property<T> property, T newValue){
+        property.removeListener(propertyChangeListenerForUndoSupport);
+        property.setValue(newValue);
+        property.addListener(propertyChangeListenerForUndoSupport);
     }
 
     public void save() {
@@ -156,17 +151,51 @@ public class LanguagePM {
         redoCommand.redo();
     }
 
-    public void changeName(Language language, String value) {
-        language.nameProperty().removeListener(changeNameListener);
-        language.setName(value);
-        language.nameProperty().addListener(changeNameListener);
-    }
-
     public BooleanProperty disabledUndoProperty() {
         return disabledUndo;
     }
 
     public BooleanProperty disabledRedoProperty() {
         return disabledRedo;
+    }
+
+    private void disableUndoSupport(Language language) {
+        language.idProperty().removeListener(propertyChangeListenerForUndoSupport);
+        language.nameProperty().removeListener(propertyChangeListenerForUndoSupport);
+        language.publishedYearProperty().removeListener(propertyChangeListenerForUndoSupport);
+        language.developerProperty().removeListener(propertyChangeListenerForUndoSupport);
+        language.typingProperty().removeListener(propertyChangeListenerForUndoSupport);
+        language.paradigmsProperty().removeListener(propertyChangeListenerForUndoSupport);
+        language.stackoverflowTagsProperty().removeListener(propertyChangeListenerForUndoSupport);
+    }
+
+    private void enableUndoSupport(Language language) {
+        language.idProperty().addListener(propertyChangeListenerForUndoSupport);
+        language.nameProperty().addListener(propertyChangeListenerForUndoSupport);
+        language.publishedYearProperty().addListener(propertyChangeListenerForUndoSupport);
+        language.developerProperty().addListener(propertyChangeListenerForUndoSupport);
+        language.typingProperty().addListener(propertyChangeListenerForUndoSupport);
+        language.paradigmsProperty().addListener(propertyChangeListenerForUndoSupport);
+        language.stackoverflowTagsProperty().addListener(propertyChangeListenerForUndoSupport);
+    }
+
+    private void unbindFromProxy(Language language) {
+        languageProxy.idProperty().unbindBidirectional(language.idProperty());
+        languageProxy.nameProperty().unbindBidirectional(language.nameProperty());
+        languageProxy.publishedYearProperty().unbindBidirectional(language.publishedYearProperty());
+        languageProxy.developerProperty().unbindBidirectional(language.developerProperty());
+        languageProxy.typingProperty().unbindBidirectional(language.typingProperty());
+        languageProxy.paradigmsProperty().unbindBidirectional(language.paradigmsProperty());
+        languageProxy.stackoverflowTagsProperty().unbindBidirectional(language.stackoverflowTagsProperty());
+    }
+
+    private void bindToProxy(Language language) {
+        languageProxy.idProperty().bindBidirectional(language.idProperty());
+        languageProxy.nameProperty().bindBidirectional(language.nameProperty());
+        languageProxy.publishedYearProperty().bindBidirectional(language.publishedYearProperty());
+        languageProxy.developerProperty().bindBidirectional(language.developerProperty());
+        languageProxy.typingProperty().bindBidirectional(language.typingProperty());
+        languageProxy.paradigmsProperty().bindBidirectional(language.paradigmsProperty());
+        languageProxy.stackoverflowTagsProperty().bindBidirectional(language.stackoverflowTagsProperty());
     }
 }
