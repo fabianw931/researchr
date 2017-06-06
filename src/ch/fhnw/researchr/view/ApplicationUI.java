@@ -8,7 +8,7 @@ public class ApplicationUI extends BorderPane implements ViewMixin {
 
     private Toolbar      toolbar;
     private LanguageForm languageForm;
-    private ListView     listView;
+    private LanguageListView languageListView;
 
     public ApplicationUI(LanguagePM model) {
         this.model = model;
@@ -19,14 +19,14 @@ public class ApplicationUI extends BorderPane implements ViewMixin {
     public void initializeControls() {
         languageForm = new LanguageForm(model);
         toolbar = new Toolbar(model);
-        listView = new ListView(model);
+        languageListView = new LanguageListView(model);
     }
 
     @Override
     public void layoutControls() {
         setTop(toolbar);
         setCenter(languageForm);
-        setLeft(listView);
+        setLeft(languageListView);
         //setCenter(new VBox(countryHeader, countryForm));
     }
 

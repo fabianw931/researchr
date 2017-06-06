@@ -31,8 +31,6 @@ public class FileHandler {
 
             JsonArray jArr = jObj.getAsJsonArray("programmingLanguages");
 
-            System.out.println(jArr.get(0).getAsJsonObject().size());
-
             /*
             String[][] languages = new String[jArr.size()][jArr.get(0).getAsJsonObject().size()];
 

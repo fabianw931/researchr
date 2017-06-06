@@ -2,12 +2,9 @@ package ch.fhnw.researchr;
 
 import ch.fhnw.researchr.model.LanguagePM;
 import ch.fhnw.researchr.view.ApplicationUI;
-import ch.fhnw.researchr.view.LanguageForm;
-import ch.fhnw.researchr.view.ResearchrView;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application{
