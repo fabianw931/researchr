@@ -5,6 +5,7 @@ import ch.fhnw.researchr.view.ApplicationUI;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -25,7 +26,7 @@ public class Main extends Application{
         String stylesheet = getClass().getResource("resources/css/style.css").toExternalForm();
         scene.getStylesheets().add(stylesheet);
 
-        primaryStage.titleProperty();
+        primaryStage.setTitle(model.getApplicationTitle());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguagePM {
-    private final StringProperty applicationTitle  = new SimpleStringProperty("Programmiersprachen");
+    private final StringProperty applicationTitle  = new SimpleStringProperty("Researchr - Programmiersprachen");
 
     private final IntegerProperty selectedLanguageId = new SimpleIntegerProperty(-1);
 
