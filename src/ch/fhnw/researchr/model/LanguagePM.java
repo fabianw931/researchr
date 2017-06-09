@@ -72,6 +72,7 @@ public class LanguagePM {
                 }
         );
 
+
         setSelectedLanguageId(1);
 
         selectedLanguageIdProperty().addListener(propertyChangeListenerForUndoSupport);
@@ -148,22 +149,26 @@ public class LanguagePM {
         Language lang = this.getLanguage(this.getSelectedLanguageId());
         int index = languages.indexOf(lang);
         languages.remove(lang);
+        if (index > 0) {
+            index--;
+        }
 
         // if all languages have been deleted
         if (languages.size() == 0) {
             addNew();
+            setSelectedLanguageId(1);
             return;
         }
 
         // point to the previous language
-        if (index > languages.size()) {
-            Language newPointer = languages.get(--index);
+        if (index < languages.size()) {
+            Language newPointer = languages.get(index);
             setSelectedLanguageId(newPointer.getId());
             return;
         }
 
         // point to the next language
-        Language newPointer = languages.get(index);
+        Language newPointer = languages.get(languages.size() - 1);
         setSelectedLanguageId(newPointer.getId());
     }
 
@@ -189,6 +194,14 @@ public class LanguagePM {
 
     public BooleanProperty disabledRedoProperty() {
         return disabledRedo;
+    }
+
+    public BooleanProperty disabledRemoveProperty() {
+        return disabledRemove;
+    }
+
+    public BooleanProperty disabledSaveProperty() {
+        return disabledSave;
     }
 
     private void disableUndoSupport(Language language) {

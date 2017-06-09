@@ -82,7 +82,8 @@ public class Toolbar extends HBox implements ViewMixin {
     public void addBindings() {
         undoBtn.disableProperty().bind(model.disabledUndoProperty());
         redoBtn.disableProperty().bind(model.disabledRedoProperty());
-
+        removeBtn.disableProperty().bind(model.disabledRemoveProperty());
+        saveBtn.disableProperty().bind(model.disabledSaveProperty());
     }
 
     @Override

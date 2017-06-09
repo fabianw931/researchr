@@ -34,4 +34,13 @@ public class ApplicationUI extends BorderPane implements ViewMixin {
         //setCenter(new VBox(countryHeader, countryForm));
     }
 
+    @Override
+    public void addBindings() {
+        languageListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                model.setSelectedLanguageId(newSelection.getId());
+            }
+        });
+    }
+
 }
