@@ -69,13 +69,30 @@ public class LanguageForm extends GridPane implements ViewMixin {
         grow.setHgrow(Priority.ALWAYS);
         getColumnConstraints().addAll(new ColumnConstraints(), grow);
 
-        addRow(1, nameLabel, nameField);
-        addRow(2, publishedYearLabel, publishedYearField);
-        addRow(3, developerLabel, developerField);
-        addRow(4, typingLabel, typingField);
-        addRow(5, paradigmsLabel, paradigmsField);
-        addRow(6, stackoverflowTagsLabel, stackoverflowTagsField);
-        addRow(7, pieChart);
+        gridLinesVisibleProperty().setValue(false);
+
+        setHgap(10);
+        setVgap(10);
+
+        add(nameLabel, 0, 0);
+        add(nameField, 1, 0);
+
+        add(publishedYearLabel, 0, 1);
+        add(publishedYearField, 1, 1);
+
+        add(developerLabel, 0, 2);
+        add(developerField, 1, 2);
+
+        add(typingLabel, 0, 3);
+        add(typingField, 1, 3);
+
+        add(paradigmsLabel, 0, 4);
+        add(paradigmsField, 1, 4);
+
+        add(stackoverflowTagsLabel, 0, 5);
+        add(stackoverflowTagsField, 1, 5);
+
+        add(pieChart,0,6,2 ,2);
     }
 
     @Override
