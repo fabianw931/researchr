@@ -171,6 +171,7 @@ public class LanguagePM {
 
     public void addNew() {
         Language lang = new Language();
+        System.out.println(lang.getId());
         languages.add(lang);
         setSelectedLanguageId(lang.getId());
     }

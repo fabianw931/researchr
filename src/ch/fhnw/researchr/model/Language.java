@@ -18,10 +18,10 @@ public class Language {
     private IntegerProperty stackoverflowTags = new SimpleIntegerProperty();
     private ObjectProperty<ImageView> imageView = new SimpleObjectProperty<>();
 
-    public Language(int id, String name, int publishedYear, String developer,
+    public Language(String name, int publishedYear, String developer,
                     String typing, String paradigms, int stackoverflowTags, ImageView imageView) {
 
-        setId(id);
+        setId(counter++);
         setName(name);
         setPublishedYear(publishedYear);
         setDeveloper(developer);
@@ -43,12 +43,6 @@ public class Language {
         setParadigms(paradigms);
         setStackoverflowTags(stackoverflowTags);
 
-    }
-
-    public Language(String name, String developer) {
-        setId(counter++);
-        setName(name);
-        setDeveloper(developer);
     }
 
     public Language() {
