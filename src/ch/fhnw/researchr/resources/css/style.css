@@ -1,6 +1,5 @@
 .button{
-    -fx-font-size: 25;
-    -fx-background-color: rgba(239, 239 ,245);
+    -fx-background-color: transparent;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
 }
@@ -22,6 +21,10 @@
     -fx-background-color: rgba(239, 239 ,245);
 }
 
+.img-view {
+    -fx-height: 30px;
+}
+
 .table-view {
     -fx-table-cell-border-color: transparent;
 }
@@ -29,4 +32,13 @@
 .column-header-background {
     visibility: hidden;
     -fx-padding: -1em;
+}
+
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D0D0D0;
+}
+
+.text-field:focused {
+    -fx-background-color: #F6F6F6;
 }
