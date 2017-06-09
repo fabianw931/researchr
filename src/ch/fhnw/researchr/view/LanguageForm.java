@@ -2,10 +2,9 @@ package ch.fhnw.researchr.view;
 
 import ch.fhnw.researchr.model.Language;
 import ch.fhnw.researchr.model.LanguagePM;
-import javafx.beans.binding.Bindings;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -33,6 +32,8 @@ public class LanguageForm extends GridPane implements ViewMixin {
     private Label     stackoverflowTagsLabel;
     private TextField stackoverflowTagsField;
 
+    private PieChart pieChart;
+
     public LanguageForm(LanguagePM model) {
         this.model = model;
         getStyleClass().add("form");
@@ -58,6 +59,8 @@ public class LanguageForm extends GridPane implements ViewMixin {
 
         stackoverflowTagsLabel = new Label("Stackoverflow Tags");
         stackoverflowTagsField = new TextField();
+
+        pieChart = new PieChart(model.getPieChartData());
     }
 
     @Override
@@ -72,6 +75,7 @@ public class LanguageForm extends GridPane implements ViewMixin {
         addRow(4, typingLabel, typingField);
         addRow(5, paradigmsLabel, paradigmsField);
         addRow(6, stackoverflowTagsLabel, stackoverflowTagsField);
+        addRow(7, pieChart);
     }
 
     @Override

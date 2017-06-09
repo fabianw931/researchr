@@ -7,6 +7,7 @@ import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -21,6 +22,8 @@ public class LanguagePM {
     private final IntegerProperty selectedLanguageId = new SimpleIntegerProperty(-1);
 
     private ObservableList<Language> languages = FXCollections.observableArrayList();
+
+    private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
     private final Language languageProxy = new Language();
 
@@ -40,9 +43,8 @@ public class LanguagePM {
     };
 
     public LanguagePM() {
-        this(getLanguages());
-
         fileHandler = new FileHandler();
+        readLanguages();
     }
 
     public LanguagePM(List<Language> languageList) {
@@ -245,6 +247,7 @@ public class LanguagePM {
             String imgPath = navFolder + jObj.get("Name").getAsString().toLowerCase() + ".png";
             URL url = getClass().getResource(imgPath);
             File varTmpDir = new File(url.getPath());
+
             if (!varTmpDir.exists()) imgPath = "../resources/img/languages/blank.png";
 
             Language lang = new Language(i,
@@ -263,4 +266,29 @@ public class LanguagePM {
         return languages;
 
     }
+
+
+    public ObservableList<PieChart.Data> getPieChartData() {
+
+        for (Language l : languages()){
+            pieChartData.add(new PieChart.Data(l.getName(), l.getStackoverflowTags()));
+        }
+
+        return pieChartData;
+    }
+
+    public void naiveAddData(String name, double value){
+        pieChartData.add(new PieChart.Data(name, value));
+    }
+
+    private void updatePieChart(String name, int value){
+        for(PieChart.Data d : pieChartData){
+            if(d.getName().equals(name)){
+                d.setPieValue(value);
+                return;
+            }
+        }
+        naiveAddData(name, value);
+    }
+
 }

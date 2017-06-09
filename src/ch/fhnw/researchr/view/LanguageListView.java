@@ -37,7 +37,9 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
         langDevColumn.setMinWidth(200);
         langDevColumn.setCellValueFactory(new PropertyValueFactory<>("developer"));
 
-        this.setItems(model.readLanguages());
+        this.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        this.setItems(model.languages());
         this.getColumns().addAll(langPicColumn, langNameColumn, langDevColumn);
 
     }
@@ -46,6 +48,8 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
 
     @Override
     public void addBindings() {
+
+
 
     }
 }
