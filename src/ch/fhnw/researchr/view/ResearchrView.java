@@ -143,17 +143,7 @@ public class ResearchrView extends BorderPane{
         langInfoColumn.setCellValueFactory(new PropertyValueFactory<>("developer"));
 
         ObservableList<Language> itemList = FXCollections.observableArrayList();
-
-        while(i < jArr.size()) {
-            jObj = jArr.get(i).getAsJsonObject();
-            i++;
-            itemList.add(
-                    new Language(
-                            jObj.get("Name").getAsString(),
-                            jObj.get("Entwickler").getAsString()
-                        )
-                    );
-        }
+        
 
         tableView = new TableView<Language>();
         tableView.setItems(itemList);

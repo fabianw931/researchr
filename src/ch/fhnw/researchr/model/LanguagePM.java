@@ -109,7 +109,7 @@ public class LanguagePM {
 
             if (!varTmpDir.exists()) imgPath = "../resources/img/languages/blank.png";
 
-            Language lang = new Language(i,
+            Language lang = new Language(
                     jObj.get("Name").getAsString(),
                     jObj.get("Erscheinungsjahr").getAsInt(),
                     jObj.get("Entwickler").getAsString(),
