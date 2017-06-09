@@ -2,6 +2,7 @@ package ch.fhnw.researchr.view;
 
 import ch.fhnw.researchr.model.Language;
 import ch.fhnw.researchr.model.LanguagePM;
+import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -73,6 +74,7 @@ public class LanguageForm extends GridPane implements ViewMixin {
 
         gridLinesVisibleProperty().setValue(false);
 
+        setPadding(new Insets(25, 25, 25, 25));
         setHgap(10);
         setVgap(10);
 
