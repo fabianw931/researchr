@@ -2,8 +2,6 @@ package ch.fhnw.researchr.view;
 
 
 import ch.fhnw.researchr.model.LanguagePM;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -84,7 +82,6 @@ public class Toolbar extends HBox implements ViewMixin {
         redoBtn.disableProperty().bind(model.disabledRedoProperty());
         removeBtn.disableProperty().bind(model.disabledRemoveProperty());
         saveBtn.disableProperty().bind(model.disabledSaveProperty());
-       // searchField.textProperty().bindBidirectional(model.searchTextProperty());
     }
 
     @Override
@@ -98,10 +95,6 @@ public class Toolbar extends HBox implements ViewMixin {
 
     @Override
     public void addValueChangedListeners() {
-        searchField.textProperty().addListener((event, oldValue, newValue) -> {
-            model.setSearchText(newValue);
-            model.filtered();
-        });
     }
 
     public TextField getSearchField(){

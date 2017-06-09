@@ -140,7 +140,7 @@ public class LanguagePM {
     }
 
     public ObservableList<Language> languages() {
-        return languages;
+       return languages;
     }
 
     public void setLanguages(FilteredList<Language> lang) {
@@ -178,14 +178,8 @@ public class LanguagePM {
     }
 
     public void save() {
-        Language lang = this.getLanguage(this.getSelectedLanguageId());
-
-        if (lang == null) return;
-
         FileHandler fileHandler = new FileHandler();
         fileHandler.save(languages());
-
-        System.out.println("Language: " + lang.getName());
     }
 
     public void addNew() {
@@ -267,8 +261,6 @@ public class LanguagePM {
     }
 
     public FilteredList<Language> filtered() {
-        System.out.println("filter for '" + getSearchText() + "'");
-
         filteredData = new FilteredList<>(languages, s -> true);
         filteredData.setPredicate(language -> {
             // If filter text is empty, display all persons.
@@ -292,12 +284,6 @@ public class LanguagePM {
         });
 
         return filteredData;
-
-
-        /*if (getSearchText() != null) {
-            this.languages.stream()
-                    .filter(language -> language.getName().toLowerCase().contains(getSearchText().toLowerCase())).findAny();
-        }*/
     }
 
     private void disableUndoSupport(Language language) {
