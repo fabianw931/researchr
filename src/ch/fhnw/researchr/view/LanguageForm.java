@@ -61,6 +61,8 @@ public class LanguageForm extends GridPane implements ViewMixin {
         stackoverflowTagsField = new TextField();
 
         pieChart = new PieChart(model.getPieChartData());
+        pieChart.setTitle("Stackoverflow Popularität");
+        pieChart.setLegendVisible(false);
     }
 
     @Override

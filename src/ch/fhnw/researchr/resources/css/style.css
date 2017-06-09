@@ -21,3 +21,12 @@
 .tool-bar {
     -fx-background-color: rgba(239, 239 ,245);
 }
+
+.table-view {
+    -fx-table-cell-border-color: transparent;
+}
+
+.column-header-background {
+    visibility: hidden;
+    -fx-padding: -1em;
+}
