@@ -3,7 +3,11 @@ package ch.fhnw.researchr.model;
 import javafx.beans.property.*;
 import javafx.scene.image.ImageView;
 
+import java.time.LocalDate;
+
 public class Language {
+
+    private static int counter = 1;
 
     private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty name = new SimpleStringProperty();
@@ -28,10 +32,10 @@ public class Language {
 
     }
 
-    public Language(int id, String name, int publishedYear, String developer,
+    public Language(String name, int publishedYear, String developer,
                     String typing, String paradigms, int stackoverflowTags) {
 
-        setId(id);
+        setId(counter++);
         setName(name);
         setPublishedYear(publishedYear);
         setDeveloper(developer);
@@ -41,13 +45,15 @@ public class Language {
 
     }
 
-    public Language(int id, String name, String developer) {
-        setId(id);
+    public Language(String name, String developer) {
+        setId(counter++);
         setName(name);
         setDeveloper(developer);
     }
 
     public Language() {
+        setId(counter++);
+        setPublishedYear(LocalDate.now().getYear());
     }
 
     public int getId() {

@@ -40,10 +40,6 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
         this.setItems(model.readLanguages());
         this.getColumns().addAll(langPicColumn, langNameColumn, langDevColumn);
 
-
-
-
-
     }
 
 

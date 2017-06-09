@@ -148,7 +148,7 @@ public class ResearchrView extends BorderPane{
             jObj = jArr.get(i).getAsJsonObject();
             i++;
             itemList.add(
-                    new Language(i,
+                    new Language(
                             jObj.get("Name").getAsString(),
                             jObj.get("Entwickler").getAsString()
                         )

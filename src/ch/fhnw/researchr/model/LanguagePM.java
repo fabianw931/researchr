@@ -27,8 +27,10 @@ public class LanguagePM {
     private final ObservableList<Command> undoStack = FXCollections.observableArrayList();
     private final ObservableList<Command> redoStack = FXCollections.observableArrayList();
 
-    private BooleanProperty disabledUndo = new SimpleBooleanProperty();
-    private BooleanProperty disabledRedo = new SimpleBooleanProperty();
+    private BooleanProperty disabledUndo   = new SimpleBooleanProperty();
+    private BooleanProperty disabledRedo   = new SimpleBooleanProperty();
+    private BooleanProperty disabledRemove = new SimpleBooleanProperty();
+    private BooleanProperty disabledSave   = new SimpleBooleanProperty();
 
     private FileHandler fileHandler;
 
@@ -49,12 +51,12 @@ public class LanguagePM {
 
         disabledUndo.bind(Bindings.isEmpty(undoStack));
         disabledRedo.bind(Bindings.isEmpty(redoStack));
-
+        disabledRemove.bind(Bindings.isEmpty(languages));
+        disabledSave.bind(Bindings.isEmpty(undoStack));
 
         selectedLanguageIdProperty().addListener((observable, oldValue, newValue) -> {
                     Language oldSelection = getLanguage(oldValue.intValue());
                     Language newSelection = getLanguage(newValue.intValue());
-
 
                     if (oldSelection != null) {
                         unbindFromProxy(oldSelection);
@@ -65,7 +67,6 @@ public class LanguagePM {
                         bindToProxy(newSelection);
                         enableUndoSupport(newSelection);
                     }
-
                 }
         );
 
@@ -136,11 +137,32 @@ public class LanguagePM {
     }
 
     public void addNew() {
-
+        Language lang = new Language();
+        languages.add(lang);
+        setSelectedLanguageId(lang.getId());
     }
 
     public void remove() {
+        Language lang = this.getLanguage(this.getSelectedLanguageId());
+        int index = languages.indexOf(lang);
+        languages.remove(lang);
 
+        // if all languages have been deleted
+        if (languages.size() == 0) {
+            addNew();
+            return;
+        }
+
+        // point to the previous language
+        if (index > languages.size()) {
+            Language newPointer = languages.get(--index);
+            setSelectedLanguageId(newPointer.getId());
+            return;
+        }
+
+        // point to the next language
+        Language newPointer = languages.get(index);
+        setSelectedLanguageId(newPointer.getId());
     }
 
     public void undo() {

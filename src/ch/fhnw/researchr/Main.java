@@ -15,7 +15,6 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         LanguagePM model = new LanguagePM();
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(600);
