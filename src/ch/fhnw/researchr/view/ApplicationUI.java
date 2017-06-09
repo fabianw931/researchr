@@ -1,8 +1,11 @@
 package ch.fhnw.researchr.view;
 
+import ch.fhnw.researchr.model.Language;
 import ch.fhnw.researchr.model.LanguagePM;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
+
 
 public class ApplicationUI extends BorderPane implements ViewMixin {
     private final LanguagePM model;
@@ -47,6 +50,19 @@ public class ApplicationUI extends BorderPane implements ViewMixin {
                 languageListView.getSelectionModel().select(model.getLanguage(model.getSelectedLanguageId()));
             }
         });
+
+       /* toolbar.getSearchField().textProperty().addListener((observable, oldValue, newValue) -> {
+                model.languages.stream()
+                        .filter(language -> language.getName().toLowerCase().contains(newValue.toLowerCase()))
+                        .findAny()
+                        .ifPresent(language -> {
+                            languageListView.getSelectionModel().select(language);
+                            languageListView.scrollTo(language);
+
+                        });
+        });*/
+
+
     }
 
 }

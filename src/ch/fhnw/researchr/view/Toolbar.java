@@ -84,6 +84,7 @@ public class Toolbar extends HBox implements ViewMixin {
         redoBtn.disableProperty().bind(model.disabledRedoProperty());
         removeBtn.disableProperty().bind(model.disabledRemoveProperty());
         saveBtn.disableProperty().bind(model.disabledSaveProperty());
+       // searchField.textProperty().bindBidirectional(model.searchTextProperty());
     }
 
     @Override
@@ -97,5 +98,13 @@ public class Toolbar extends HBox implements ViewMixin {
 
     @Override
     public void addValueChangedListeners() {
+        searchField.textProperty().addListener((event, oldValue, newValue) -> {
+            model.setSearchText(newValue);
+            model.filtered();
+        });
+    }
+
+    public TextField getSearchField(){
+        return searchField;
     }
 }
