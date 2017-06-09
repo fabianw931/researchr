@@ -338,8 +338,8 @@ public class LanguagePM {
     }
 
     public void updatePieChart(){
-        String name = languages().get(getSelectedLanguageId()).getName();
-        int value = languages().get(getSelectedLanguageId()).getStackoverflowTags();
+        String name = languages().get(getSelectedLanguageId() - 1).getName();
+        int value = languages().get(getSelectedLanguageId() - 1).getStackoverflowTags();
         for(PieChart.Data d : pieChartData){
             if(d.getName().equals(name)){
                 d.setPieValue(value);
