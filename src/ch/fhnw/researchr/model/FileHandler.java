@@ -60,8 +60,6 @@ public class FileHandler {
 
             JsonElement jElem = new JsonParser().parse(new FileReader(fileLocation));
 
-            System.out.println(jElem);
-
             JsonObject jObj = jElem.getAsJsonObject();
 
             JsonArray jArr = jObj.getAsJsonArray("programmingLanguages");

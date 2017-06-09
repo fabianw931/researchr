@@ -115,8 +115,6 @@ public class LanguagePM {
                 filePath = new File("").getAbsolutePath().concat(blankImg);
             }
 
-            System.out.println(filePath);
-
             try {
                 filePath = URLEncoder.encode(filePath, "utf-8");
             } catch (UnsupportedEncodingException e) {
@@ -335,11 +333,13 @@ public class LanguagePM {
         return pieChartData;
     }
 
-    public void naiveAddData(String name, double value){
+    private void naiveAddData(String name, double value){
         pieChartData.add(new PieChart.Data(name, value));
     }
 
-    private void updatePieChart(String name, int value){
+    public void updatePieChart(){
+        String name = languages().get(getSelectedLanguageId()).getName();
+        int value = languages().get(getSelectedLanguageId()).getStackoverflowTags();
         for(PieChart.Data d : pieChartData){
             if(d.getName().equals(name)){
                 d.setPieValue(value);

@@ -110,5 +110,10 @@ public class LanguageForm extends GridPane implements ViewMixin {
         paradigmsField.textProperty().bindBidirectional(proxy.paradigmsProperty());
         stackoverflowTagsField.textProperty().bindBidirectional(proxy.stackoverflowTagsProperty(), new NumberStringConverter());
 
+
+        stackoverflowTagsField.textProperty().addListener((observable, oldValue, newValue) -> {
+            model.updatePieChart();
+            System.out.println(model.languages().get(model.getSelectedLanguageId()).getStackoverflowTags());
+        });
     }
 }
