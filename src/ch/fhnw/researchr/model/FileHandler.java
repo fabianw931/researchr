@@ -1,22 +1,56 @@
 package ch.fhnw.researchr.model;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+import com.google.gson.stream.JsonWriter;
+import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileHandler {
 
-    private String saveFileLocation;
+    private String fileLocation = "programminglanguages.json";
 
     public FileHandler() {
 
     }
 
-    public void save() {
+    public void save(ObservableList<Language> languages){
+
+
+        ObservableList<Language> langs = languages;
+        JsonWriter writer = null;
+
+
+        try {
+            writer = new JsonWriter(new FileWriter(fileLocation));
+
+            writer.beginObject();
+            writer.name("programmingLanguages");
+            writer.beginArray();
+
+            for (Language l : langs){
+
+                writer.beginObject();
+                writer.name("Name").value(l.getName());
+                writer.name("Erscheinungsjahr").value(l.getPublishedYear());
+                writer.name("Entwickler").value(l.getDeveloper());
+                writer.name("Typisierung").value(l.getTyping());
+                writer.name("Paradigmen").value(l.getParadigms());
+                writer.name("StackoverflowTags").value(l.getStackoverflowTags());
+                writer.endObject();
+            }
+
+            writer.endArray();
+            writer.endObject();
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -24,39 +58,14 @@ public class FileHandler {
 
         try {
 
-            JsonElement jElem = new JsonParser().parse(new FileReader("programminglanguages.json"));
+            JsonElement jElem = new JsonParser().parse(new FileReader(fileLocation));
+
+            System.out.println(jElem);
 
             JsonObject jObj = jElem.getAsJsonObject();
-            //jObj = jObj.getAsJsonObject("programmingLanguages");
 
             JsonArray jArr = jObj.getAsJsonArray("programmingLanguages");
 
-            /*
-            String[][] languages = new String[jArr.size()][jArr.get(0).getAsJsonObject().size()];
-
-            int i = 0;
-            while(i < jArr.size()) {
-                jObj = jArr.get(i).getAsJsonObject();
-
-                int j = 0;
-                for(Map.Entry<String, JsonElement> e : jObj.entrySet()){
-                    System.out.println(e.getValue().getAsString());
-                    languages[i][j] = e.get();
-                    i++;
-                }
-
-
-                System.out.println(jObj.get("Name"));
-                System.out.println(jObj.get("Erscheinungsjahr"));
-                System.out.println(jObj.get("Entwickler"));
-                System.out.println(jObj.get("Typisierung"));
-                System.out.println(jObj.get("Paradigmen"));
-                System.out.println(jObj.get("StackoverflowTags"));
-
-
-                i++;
-            }
-            */
             return jArr;
 
         } catch (FileNotFoundException e) {
@@ -66,12 +75,12 @@ public class FileHandler {
         return null;
     }
 
-    public String getSaveFileLocation() {
-        return saveFileLocation;
+    public String getFileLocation() {
+        return fileLocation;
     }
 
-    public void setSaveFileLocation(String saveFileLocation) {
-        this.saveFileLocation = saveFileLocation;
+    public void setFileLocation(String fileLocation) {
+        this.fileLocation = fileLocation;
     }
 
 }

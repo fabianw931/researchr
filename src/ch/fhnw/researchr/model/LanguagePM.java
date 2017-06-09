@@ -12,7 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,8 +94,8 @@ public class LanguagePM {
         JsonArray jArr = fileHandler.read();
 
         JsonObject jObj;
-        String navFolder = "../resources/img/languages/";
-
+        String navFolder = "/src/ch/fhnw/researchr/resources/img/languages/";
+        String blankImg = "/src/ch/fhnw/researchr/resources/img/languages/blank.png";
         int i = 0;
 
         List<Language> list = new ArrayList();
@@ -104,10 +105,20 @@ public class LanguagePM {
             i++;
 
             String imgPath = navFolder + jObj.get("Name").getAsString().toLowerCase() + ".png";
-            URL url = LanguagePM.class.getResource(imgPath);
-            File varTmpDir = new File(url.getPath());
 
-            if (!varTmpDir.exists()) imgPath = "../resources/img/languages/blank.png";
+            String filePath = new File("").getAbsolutePath().concat(imgPath);
+
+            if (!new File(filePath).exists()){
+                filePath = new File("").getAbsolutePath().concat(blankImg);
+            }
+
+            System.out.println(filePath);
+
+            try {
+                filePath = URLEncoder.encode(filePath, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
 
             Language lang = new Language(
                     jObj.get("Name").getAsString(),
@@ -116,7 +127,7 @@ public class LanguagePM {
                     jObj.get("Typisierung").getAsString(),
                     jObj.get("Paradigmen").getAsString(),
                     jObj.get("StackoverflowTags").getAsInt(),
-                    new ImageView(new Image(LanguagePM.class.getResourceAsStream(imgPath), 50, 50, false, false))
+                    new ImageView(new Image("file:" + filePath, 50, 50, false, false))
             );
 
             list.add(lang);
@@ -165,6 +176,9 @@ public class LanguagePM {
         Language lang = this.getLanguage(this.getSelectedLanguageId());
 
         if (lang == null) return;
+
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.save(languages());
 
         System.out.println("Language: " + lang.getName());
     }
