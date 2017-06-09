@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LanguagePM {
@@ -43,8 +43,7 @@ public class LanguagePM {
     };
 
     public LanguagePM() {
-        fileHandler = new FileHandler();
-        readLanguages();
+        this(getLanguages());
     }
 
     public LanguagePM(List<Language> languageList) {
@@ -90,11 +89,42 @@ public class LanguagePM {
     }
 
     private static List<Language> getLanguages() {
-        return Arrays.asList(
-                new Language(1, "PHP", 1990, "dude",
-                        "ayy", "lmao", 1995, null),
-                new Language(1, "Java", 1990, "dude",
-                        "ayy", "lmao", 1995, null));
+        FileHandler fileHandler = new FileHandler();
+        JsonArray jArr = fileHandler.read();
+
+        JsonObject jObj;
+        String navFolder = "../resources/img/languages/";
+
+        int i = 0;
+
+        List<Language> list = new ArrayList();
+
+        while(i < jArr.size()) {
+            jObj = jArr.get(i).getAsJsonObject();
+            i++;
+
+            String imgPath = navFolder + jObj.get("Name").getAsString().toLowerCase() + ".png";
+            URL url = LanguagePM.class.getResource(imgPath);
+            File varTmpDir = new File(url.getPath());
+
+            if (!varTmpDir.exists()) imgPath = "../resources/img/languages/blank.png";
+
+            Language lang = new Language(i,
+                    jObj.get("Name").getAsString(),
+                    jObj.get("Erscheinungsjahr").getAsInt(),
+                    jObj.get("Entwickler").getAsString(),
+                    jObj.get("Typisierung").getAsString(),
+                    jObj.get("Paradigmen").getAsString(),
+                    jObj.get("StackoverflowTags").getAsInt(),
+                    new ImageView(new Image(LanguagePM.class.getResourceAsStream(imgPath), 50, 50, false, false))
+            );
+
+            list.add(lang);
+        }
+
+
+
+        return list;
     }
 
     public ObservableList<Language> languages() {
@@ -242,44 +272,7 @@ public class LanguagePM {
         languageProxy.typingProperty().bindBidirectional(language.typingProperty());
         languageProxy.paradigmsProperty().bindBidirectional(language.paradigmsProperty());
         languageProxy.stackoverflowTagsProperty().bindBidirectional(language.stackoverflowTagsProperty());
-    }
-
-    public ObservableList<Language> readLanguages() {
-
-        JsonArray jArr = fileHandler.read();
-
-        JsonObject jObj;
-        String navFolder = "../resources/img/languages/";
-
-        int i = 0;
-
-        while(i < jArr.size()) {
-            jObj = jArr.get(i).getAsJsonObject();
-            i++;
-
-            String imgPath = navFolder + jObj.get("Name").getAsString().toLowerCase() + ".png";
-            URL url = getClass().getResource(imgPath);
-            File varTmpDir = new File(url.getPath());
-
-            if (!varTmpDir.exists()) imgPath = "../resources/img/languages/blank.png";
-
-            Language lang = new Language(i,
-                    jObj.get("Name").getAsString(),
-                    jObj.get("Erscheinungsjahr").getAsInt(),
-                    jObj.get("Entwickler").getAsString(),
-                    jObj.get("Typisierung").getAsString(),
-                    jObj.get("Paradigmen").getAsString(),
-                    jObj.get("StackoverflowTags").getAsInt(),
-                    new ImageView(new Image(getClass().getResourceAsStream(imgPath), 50, 50, false, false))
-            );
-
-            languages.add(lang);
-        }
-
-        return languages;
-
-    }
-
+    } 
 
     public ObservableList<PieChart.Data> getPieChartData() {
 
@@ -303,5 +296,7 @@ public class LanguagePM {
         }
         naiveAddData(name, value);
     }
+
+
 
 }
