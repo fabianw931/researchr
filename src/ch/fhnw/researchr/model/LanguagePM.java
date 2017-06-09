@@ -81,7 +81,7 @@ public class LanguagePM {
         return languageProxy;
     }
 
-    private Language getLanguage(int id) {
+    public Language getLanguage(int id) {
         return languages.stream()
                 .filter(Language -> Language.getId() == id)
                 .findAny()

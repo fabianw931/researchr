@@ -41,6 +41,12 @@ public class ApplicationUI extends BorderPane implements ViewMixin {
                 model.setSelectedLanguageId(newSelection.getId());
             }
         });
+
+        model.selectedLanguageIdProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                languageListView.getSelectionModel().select(model.getLanguage(model.getSelectedLanguageId()));
+            }
+        });
     }
 
 }
