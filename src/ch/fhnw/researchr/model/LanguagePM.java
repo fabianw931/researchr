@@ -7,6 +7,7 @@ import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,9 +23,10 @@ public class LanguagePM {
 
     private final IntegerProperty selectedLanguageId = new SimpleIntegerProperty(-1);
 
-    private ObservableList<Language> languages = FXCollections.observableArrayList();
+    public ObservableList<Language> languages = FXCollections.observableArrayList();
 
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+    private FilteredList<Language> filteredData;
 
     private final Language languageProxy = new Language();
 
@@ -36,6 +38,7 @@ public class LanguagePM {
     private BooleanProperty disabledRemove = new SimpleBooleanProperty();
     private BooleanProperty disabledSave   = new SimpleBooleanProperty();
 
+    private StringProperty searchText   = new SimpleStringProperty();
     private FileHandler fileHandler;
 
     private final ChangeListener propertyChangeListenerForUndoSupport = (observable, oldValue, newValue) -> {
@@ -131,13 +134,15 @@ public class LanguagePM {
             list.add(lang);
         }
 
-
-
         return list;
     }
 
     public ObservableList<Language> languages() {
-        return languages;
+       return languages;
+    }
+
+    public void setLanguages(FilteredList<Language> lang) {
+         this.languages = lang;
     }
 
     public String getApplicationTitle() {
@@ -171,14 +176,8 @@ public class LanguagePM {
     }
 
     public void save() {
-        Language lang = this.getLanguage(this.getSelectedLanguageId());
-
-        if (lang == null) return;
-
         FileHandler fileHandler = new FileHandler();
         fileHandler.save(languages());
-
-        System.out.println("Language: " + lang.getName());
     }
 
     public void addNew() {
@@ -245,6 +244,44 @@ public class LanguagePM {
 
     public BooleanProperty disabledSaveProperty() {
         return disabledSave;
+    }
+
+    public String getSearchText() {
+        return searchText.get();
+    }
+
+    public StringProperty searchTextProperty() {
+        return searchText;
+    }
+
+    public void setSearchText(String searchText) {
+        this.searchText.set(searchText);
+    }
+
+    public FilteredList<Language> filtered() {
+        filteredData = new FilteredList<>(languages, s -> true);
+        filteredData.setPredicate(language -> {
+            // If filter text is empty, display all persons.
+            if (getSearchText() == null || getSearchText().isEmpty()) {
+                return true;
+            }
+
+            // Compare first name and last name of every person with filter text.
+            String lowerCaseFilter = getSearchText().toLowerCase();
+
+            if (language.getName().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Filter matches first name.
+            } else if (language.getDeveloper().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Filter matches last name.
+            } else if (language.getParadigms().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Filter matches last name.
+            } else if (language.getTyping().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Filter matches last name.
+            }
+            return false; // Does not match.
+        });
+
+        return filteredData;
     }
 
     private void disableUndoSupport(Language language) {

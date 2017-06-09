@@ -49,7 +49,7 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
     @Override
     public void addBindings() {
 
-
+       // this.disableProperty().bind(model.disabledRedoProperty());
 
     }
 }

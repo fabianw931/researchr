@@ -2,8 +2,6 @@ package ch.fhnw.researchr.view;
 
 
 import ch.fhnw.researchr.model.LanguagePM;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -97,5 +95,9 @@ public class Toolbar extends HBox implements ViewMixin {
 
     @Override
     public void addValueChangedListeners() {
+    }
+
+    public TextField getSearchField(){
+        return searchField;
     }
 }
