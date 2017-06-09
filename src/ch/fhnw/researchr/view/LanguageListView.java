@@ -51,8 +51,7 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
         while(i < jArr.size()) {
             jObj = jArr.get(i).getAsJsonObject();
             i++;
-
-            Language lang = new Language(i,
+            Language lang = new Language(
                     jObj.get("Name").getAsString(),
                     jObj.get("Entwickler").getAsString());
 
