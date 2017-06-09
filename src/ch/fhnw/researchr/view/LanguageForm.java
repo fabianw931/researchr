@@ -15,6 +15,8 @@ public class LanguageForm extends GridPane implements ViewMixin {
 
     private final LanguagePM model;
 
+    private Label title;
+
     private Label     nameLabel;
     private TextField nameField;
 
@@ -43,6 +45,10 @@ public class LanguageForm extends GridPane implements ViewMixin {
 
     @Override
     public void initializeControls() {
+
+        title = new Label(model.languages().get(model.getSelectedLanguageId() - 1).getName());
+        title.getStyleClass().add("language-title");
+
         nameLabel = new Label("Name");
         nameField = new TextField();
 
@@ -78,25 +84,27 @@ public class LanguageForm extends GridPane implements ViewMixin {
         setHgap(10);
         setVgap(10);
 
-        add(nameLabel, 0, 0);
-        add(nameField, 1, 0);
+        add(title,0,0,2 ,1);
 
-        add(publishedYearLabel, 0, 1);
-        add(publishedYearField, 1, 1);
+        add(nameLabel, 0, 1);
+        add(nameField, 1, 1);
 
-        add(developerLabel, 0, 2);
-        add(developerField, 1, 2);
+        add(publishedYearLabel, 0, 2);
+        add(publishedYearField, 1, 2);
 
-        add(typingLabel, 0, 3);
-        add(typingField, 1, 3);
+        add(developerLabel, 0, 3);
+        add(developerField, 1, 3);
 
-        add(paradigmsLabel, 0, 4);
-        add(paradigmsField, 1, 4);
+        add(typingLabel, 0, 4);
+        add(typingField, 1, 4);
 
-        add(stackoverflowTagsLabel, 0, 5);
-        add(stackoverflowTagsField, 1, 5);
+        add(paradigmsLabel, 0, 5);
+        add(paradigmsField, 1, 5);
 
-        add(pieChart,0,6,2 ,2);
+        add(stackoverflowTagsLabel, 0, 6);
+        add(stackoverflowTagsField, 1, 6);
+
+        add(pieChart,0,7,2 ,1);
     }
 
     @Override

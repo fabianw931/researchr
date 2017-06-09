@@ -42,3 +42,8 @@
 .text-field:focused {
     -fx-background-color: #F6F6F6;
 }
+
+.language-title{
+    -fx-font-size: 40;
+    -fx-font-style: oblique;
+}

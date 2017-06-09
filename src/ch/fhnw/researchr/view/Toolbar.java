@@ -2,6 +2,8 @@ package ch.fhnw.researchr.view;
 
 
 import ch.fhnw.researchr.model.LanguagePM;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,12 +44,23 @@ public class Toolbar extends HBox implements ViewMixin {
 
     private void initializeButtons() {
         String navFolder = "../resources/img/icons/";
+        int size = 30;
+        saveBtn = new Button("", new ImageView(new Image(getClass()
+                .getResourceAsStream(navFolder + "save.png"),
+                size,size,false, false)));
+        newBtn = new Button("", new ImageView(new Image(getClass()
+                .getResourceAsStream(navFolder + "add.png"),
+                size,size,false, false)));
+        removeBtn = new Button("", new ImageView(new Image(getClass()
+                .getResourceAsStream(navFolder + "remove.png"),
+                size,size,false, false)));
+        undoBtn = new Button("", new ImageView(new Image(getClass()
+                .getResourceAsStream(navFolder + "undo.png"),
+                size,size,false, false)));
+        redoBtn = new Button("", new ImageView(new Image(getClass()
+                .getResourceAsStream(navFolder + "redo.png"),
+                size,size,false, false)));
 
-        saveBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "save.png"))));
-        newBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "add.png"))));
-        removeBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "remove.png"))));
-        undoBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "undo.png"))));
-        redoBtn = new Button("", new ImageView(new Image(getClass().getResourceAsStream(navFolder + "redo.png"))));
     }
 
     private void addButtonsToArray() {
@@ -73,6 +86,11 @@ public class Toolbar extends HBox implements ViewMixin {
                 space,
                 Priority.ALWAYS
         );
+
+        setPadding(new Insets(0, 5, 0, 0));
+        setMargin(searchLabel, new Insets(0,5,0,0));
+        setAlignment(Pos.CENTER);
+
         getChildren().addAll(saveBtn, newBtn, removeBtn, undoBtn, redoBtn, space, searchLabel, searchField);
     }
 
