@@ -1,9 +1,7 @@
 package ch.fhnw.researchr.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.scene.image.ImageView;
 
 public class Language {
 
@@ -14,6 +12,21 @@ public class Language {
     private StringProperty typing = new SimpleStringProperty();
     private StringProperty paradigms = new SimpleStringProperty();
     private IntegerProperty stackoverflowTags = new SimpleIntegerProperty();
+    private ObjectProperty<ImageView> imageView = new SimpleObjectProperty<>();
+
+    public Language(int id, String name, int publishedYear, String developer,
+                    String typing, String paradigms, int stackoverflowTags, ImageView imageView) {
+
+        setId(id);
+        setName(name);
+        setPublishedYear(publishedYear);
+        setDeveloper(developer);
+        setTyping(typing);
+        setParadigms(paradigms);
+        setStackoverflowTags(stackoverflowTags);
+        setimageView(imageView);
+
+    }
 
     public Language(int id, String name, int publishedYear, String developer,
                     String typing, String paradigms, int stackoverflowTags) {
@@ -119,5 +132,17 @@ public class Language {
 
     public void setStackoverflowTags(int stackoverflowTags) {
         this.stackoverflowTags.set(stackoverflowTags);
+    }
+
+    public ImageView getImageView() {
+        return imageView.get();
+    }
+
+    public ObjectProperty<ImageView> imageViewProperty() {
+        return imageView;
+    }
+
+    public void setimageView(ImageView imageView) {
+        this.imageView.set(imageView);
     }
 }

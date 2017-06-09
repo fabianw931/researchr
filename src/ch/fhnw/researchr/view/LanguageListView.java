@@ -1,26 +1,19 @@
 package ch.fhnw.researchr.view;
 
-import ch.fhnw.researchr.model.FileHandler;
 import ch.fhnw.researchr.model.Language;
 import ch.fhnw.researchr.model.LanguagePM;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.text.html.ImageView;
+
 public class LanguageListView extends TableView<Language> implements ViewMixin {
 
     private LanguagePM model;
-    private JsonArray jArr;
 
     public LanguageListView(LanguagePM model) {
         this.model = model;
-
-        FileHandler fh = new FileHandler();
-        jArr = fh.read();
 
         getStyleClass().add("form");
         init();
@@ -33,35 +26,22 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
 
     @Override
     public void layoutControls() {
-        JsonObject jObj;
-        String navFolder = "../resources/img/icons/";
 
-        TableColumn<Language, String> langPicColumn = new TableColumn("Name");
-        langPicColumn.setMinWidth(200);
-        langPicColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Language, ImageView> langPicColumn = new TableColumn("Logo");
+        langPicColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
 
-        TableColumn<Language, String> langInfoColumn = new TableColumn("Entwickler");
-        langInfoColumn.setMinWidth(200);
-        langInfoColumn.setCellValueFactory(new PropertyValueFactory<>("developer"));
+        TableColumn<Language, String> langNameColumn = new TableColumn("Name");
+        langNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        ObservableList<Language> itemList = FXCollections.observableArrayList();
+        TableColumn<Language, String> langDevColumn = new TableColumn("Entwickler");
+        langDevColumn.setMinWidth(200);
+        langDevColumn.setCellValueFactory(new PropertyValueFactory<>("developer"));
 
-        int i = 0;
-
-        while(i < jArr.size()) {
-            jObj = jArr.get(i).getAsJsonObject();
-            i++;
-
-            Language lang = new Language(i,
-                    jObj.get("Name").getAsString(),
-                    jObj.get("Entwickler").getAsString());
-
-            itemList.add(lang);
-        }
+        this.setItems(model.readLanguages());
+        this.getColumns().addAll(langPicColumn, langNameColumn, langDevColumn);
 
 
-        this.setItems(itemList);
-        this.getColumns().addAll(langPicColumn, langInfoColumn);
+
 
 
     }
