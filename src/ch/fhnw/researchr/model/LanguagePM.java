@@ -20,6 +20,7 @@ import java.util.List;
 
 public class LanguagePM {
     private final StringProperty applicationTitle  = new SimpleStringProperty("Researchr - Programmiersprachen");
+    private final ObjectProperty<Image> applicationIcon = new SimpleObjectProperty<>(new Image(getClass().getResourceAsStream("../resources/img/researchr.png")));
 
     private final IntegerProperty selectedLanguageId = new SimpleIntegerProperty(-1);
 
@@ -143,6 +144,18 @@ public class LanguagePM {
 
     public void setLanguages(FilteredList<Language> lang) {
          this.languages = lang;
+    }
+
+    public Image getApplicationIcon() {
+        return applicationIcon.get();
+    }
+
+    public ObjectProperty<Image> applicationIconProperty(){
+        return applicationIcon;
+    }
+
+    public void setApplicationIcon(Image icon){
+        this.applicationIcon.set(icon);
     }
 
     public String getApplicationTitle() {
@@ -347,5 +360,6 @@ public class LanguagePM {
             }
         }
         naiveAddData(name, value);
-    } 
+    }
+
 }

@@ -21,7 +21,6 @@ public class LanguageListView extends TableView<Language> implements ViewMixin {
 
     @Override
     public void initializeControls() {
-
     }
 
     @Override

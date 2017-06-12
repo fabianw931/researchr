@@ -3,7 +3,6 @@ package ch.fhnw.researchr.view;
 import ch.fhnw.researchr.model.Language;
 import ch.fhnw.researchr.model.LanguagePM;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 
@@ -37,7 +36,10 @@ public class ApplicationUI extends BorderPane implements ViewMixin {
     public void layoutControls() {
         setTop(toolbar);
 
+        splitPane.setDividerPositions(0.4f);
+        languageListView.minWidthProperty().bind(splitPane.widthProperty().multiply(0.4f));
         splitPane.getItems().addAll(languageListView, languageForm);
+
         setCenter(splitPane);
         //setCenter(new VBox(countryHeader, countryForm));
     }
