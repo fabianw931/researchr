@@ -130,7 +130,7 @@ public class LanguageForm extends GridPane implements ViewMixin {
         });
 
         stackoverflowTagsField.textProperty().addListener((observable, oldValue, newValue) -> {
-            model.updatePieChart();
+            model.updatePieChart(oldValue);
         });
     }
 }

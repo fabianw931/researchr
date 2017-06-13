@@ -17,6 +17,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LanguagePM {
     private final StringProperty applicationTitle  = new SimpleStringProperty("Researchr - Programmiersprachen");
@@ -393,7 +395,7 @@ public class LanguagePM {
         return pieChartData;
     }
 
-    public void updatePieChart(){
+    public void updatePieChart(String oldValue){
         Language lang = getLanguage(getSelectedLanguageId());
         String name   = lang.getName();
         int value     = lang.getStackoverflowTags();
