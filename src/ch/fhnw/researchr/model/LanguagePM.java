@@ -301,13 +301,13 @@ public class LanguagePM {
             // Compare first name and last name of every person with filter text.
             String lowerCaseFilter = getSearchText().toLowerCase();
 
-            if (language.getName().toLowerCase().contains(lowerCaseFilter)) {
+            if (language.getName() != null && language.getName().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Filter matches first name.
-            } else if (language.getDeveloper().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (language.getDeveloper() != null && language.getDeveloper().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Filter matches last name.
-            } else if (language.getParadigms().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (language.getParadigms() != null && language.getParadigms().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Filter matches last name.
-            } else if (language.getTyping().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (language.getTyping() != null && language.getTyping().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Filter matches last name.
             }
             return false; // Does not match.
@@ -371,8 +371,9 @@ public class LanguagePM {
     }
 
     public void updatePieChart(){
-        String name = languages().get(getSelectedLanguageId() - 1).getName();
-        int value = languages().get(getSelectedLanguageId() - 1).getStackoverflowTags();
+        Language lang = getLanguage(getSelectedLanguageId());
+        String name   = lang.getName();
+        int value     = lang.getStackoverflowTags();
 
         for(PieChart.Data d : pieChartData){
             if(d.getName().equals(name)){
