@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -122,6 +123,11 @@ public class LanguageForm extends GridPane implements ViewMixin {
         typingField.textProperty().bindBidirectional(proxy.typingProperty());
         paradigmsField.textProperty().bindBidirectional(proxy.paradigmsProperty());
         stackoverflowTagsField.textProperty().bindBidirectional(proxy.stackoverflowTagsProperty(), new NumberStringConverter());
+
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            model.getLanguage(proxy.getId()).
+                    setimageView(new ImageView(model.updateImage(proxy.getName())));
+        });
 
         stackoverflowTagsField.textProperty().addListener((observable, oldValue, newValue) -> {
             model.updatePieChart();

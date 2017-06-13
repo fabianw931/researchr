@@ -131,7 +131,7 @@ public class LanguagePM {
         return list;
     }
 
-    private static Image getImage(String name){
+    public static Image getImage(String name){
         String navFolder = "/src/ch/fhnw/researchr/resources/img/languages/";
         String blankImg = "/src/ch/fhnw/researchr/resources/img/languages/blank.png";
 
@@ -150,8 +150,29 @@ public class LanguagePM {
         }
 
         return new Image("file:" + filePath, 50, 50, false, false);
-
     }
+
+    public Image updateImage(String name){
+        String navFolder = "/src/ch/fhnw/researchr/resources/img/languages/";
+        String blankImg = "/src/ch/fhnw/researchr/resources/img/languages/blank.png";
+
+        String imgPath = navFolder + name + ".png";
+
+        String filePath = new File("").getAbsolutePath().concat(imgPath);
+
+        if (!new File(filePath).exists()){
+            filePath = new File("").getAbsolutePath().concat(blankImg);
+        }
+
+        try {
+            filePath = URLEncoder.encode(filePath, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return new Image("file:" + filePath, 50, 50, false, false);
+    }
+
 
     public ObservableList<Language> languages() {
        return languages;
