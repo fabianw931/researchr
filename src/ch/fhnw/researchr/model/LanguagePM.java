@@ -243,6 +243,8 @@ public class LanguagePM {
     public void remove() {
         Language lang = this.getLanguage(this.getSelectedLanguageId());
         int index = languages.indexOf(lang);
+        PieChart.Data data = null;
+        pieChartData.remove(index);
         languages.remove(lang);
         if (index > 0) {
             index--;
