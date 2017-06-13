@@ -375,8 +375,6 @@ public class LanguagePM {
         int value = languages().get(getSelectedLanguageId() - 1).getStackoverflowTags();
 
         for(PieChart.Data d : pieChartData){
-            System.out.println(name);
-            System.out.println(d.getName());
             if(d.getName().equals(name)){
                 d.setPieValue(value);
                 return;
