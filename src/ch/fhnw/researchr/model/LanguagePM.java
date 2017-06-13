@@ -29,7 +29,7 @@ public class LanguagePM {
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
     private FilteredList<Language> filteredData;
 
-    private final Language languageProxy = new Language();
+    private final Language languageProxy = new Language(false);
 
     private final ObservableList<Command> undoStack = FXCollections.observableArrayList();
     private final ObservableList<Command> redoStack = FXCollections.observableArrayList();
@@ -98,8 +98,7 @@ public class LanguagePM {
         JsonArray jArr = fileHandler.read();
 
         JsonObject jObj;
-        String navFolder = "/src/ch/fhnw/researchr/resources/img/languages/";
-        String blankImg = "/src/ch/fhnw/researchr/resources/img/languages/blank.png";
+
         int i = 0;
 
         List<Language> list = new ArrayList();
@@ -108,19 +107,6 @@ public class LanguagePM {
             jObj = jArr.get(i).getAsJsonObject();
             i++;
 
-            String imgPath = navFolder + jObj.get("Name").getAsString().toLowerCase() + ".png";
-
-            String filePath = new File("").getAbsolutePath().concat(imgPath);
-
-            if (!new File(filePath).exists()){
-                filePath = new File("").getAbsolutePath().concat(blankImg);
-            }
-
-            try {
-                filePath = URLEncoder.encode(filePath, "utf-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
 
             Language lang = new Language(
                     jObj.get("Name").getAsString(),
@@ -129,13 +115,35 @@ public class LanguagePM {
                     jObj.get("Typisierung").getAsString(),
                     jObj.get("Paradigmen").getAsString(),
                     jObj.get("StackoverflowTags").getAsInt(),
-                    new ImageView(new Image("file:" + filePath, 50, 50, false, false))
+                    new ImageView(getImage(jObj.get("Name").getAsString()))
             );
 
             list.add(lang);
         }
 
         return list;
+    }
+
+    private static Image getImage(String name){
+        String navFolder = "/src/ch/fhnw/researchr/resources/img/languages/";
+        String blankImg = "/src/ch/fhnw/researchr/resources/img/languages/blank.png";
+
+        String imgPath = navFolder + name + ".png";
+
+        String filePath = new File("").getAbsolutePath().concat(imgPath);
+
+        if (!new File(filePath).exists()){
+            filePath = new File("").getAbsolutePath().concat(blankImg);
+        }
+
+        try {
+            filePath = URLEncoder.encode(filePath, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return new Image("file:" + filePath, 50, 50, false, false);
+
     }
 
     public ObservableList<Language> languages() {
@@ -194,10 +202,13 @@ public class LanguagePM {
     }
 
     public void addNew() {
-        Language lang = new Language();
-        System.out.println(lang.getId());
+        Language lang = new Language(true);
+        lang.setimageView(new ImageView(getImage(lang.getName())));
         languages.add(lang);
+
         setSelectedLanguageId(lang.getId());
+
+        pieChartData.add(new PieChart.Data(lang.getName(), lang.getStackoverflowTags()));
     }
 
     public void remove() {

@@ -1,1 +1,220 @@
-{"programmingLanguages":[{"Name":"Ada","Erscheinungsjahr":1980,"Entwickler":"Jean Ichbiah","Typisierung":"statisch,explizit,stark","Paradigmen":"imperativ,strukturiert,objektorientiert","StackoverflowTags":1237},{"Name":"BASIC","Erscheinungsjahr":1964,"Entwickler":"John G. Kemeny,Thomas E. Kurtz","Typisierung":"keine","Paradigmen":"imperativ","StackoverflowTags":513},{"Name":"C","Erscheinungsjahr":1972,"Entwickler":"Dennis Ritchie","Typisierung":"statisch,explizit,stark","Paradigmen":"imperativ,strukturiert","StackoverflowTags":241709},{"Name":"C++","Erscheinungsjahr":1985,"Entwickler":"Bjarne Stroustrup","Typisierung":"statisch,explizit,stark","Paradigmen":"Multiparadigmen","StackoverflowTags":497011},{"Name":"C#","Erscheinungsjahr":2001,"Entwickler":"Anders Hejlsberg","Typisierung":"statisch,stark,explizit","Paradigmen":"Multiparadigmen","StackoverflowTags":1057423},{"Name":"Delphi","Erscheinungsjahr":1986,"Entwickler":"Niklaus Wirth,Anders Hejlsberg","Typisierung":"stark,explizit,statisch","Paradigmen":"prozedural,objektorientiert","StackoverflowTags":38021},{"Name":"Erlang","Erscheinungsjahr":1987,"Entwickler":"Ericsson","Typisierung":"dynamisch,stark","Paradigmen":"Funktional,Concurrent","StackoverflowTags":7177},{"Name":"Fortran","Erscheinungsjahr":1957,"Entwickler":"John W. Backus","Typisierung":"statisch,stark","Paradigmen":"prozedural,imperativ,strukturiert,objektorientiert","StackoverflowTags":7094},{"Name":"Groovy","Erscheinungsjahr":2003,"Entwickler":"The Groovy Project","Typisierung":"stark,statisch,dynamisch","Paradigmen":"objektorientiert,teilweise deklarativ,imperativ","StackoverflowTags":16643},{"Name":"Haskell","Erscheinungsjahr":1990,"Entwickler":"Simon Peyton Jones,Paul Hudak,Philip Wadler","Typisierung":"statisch,stark,Typinferenz","Paradigmen":"funktional,nicht-strikt,modular,deklarativ","StackoverflowTags":31329},{"Name":"INTERCAL","Erscheinungsjahr":1972,"Entwickler":"Donald R. Woods,James M. Lyon","Typisierung":"keine","Paradigmen":"imperativ","StackoverflowTags":2},{"Name":"JavaScript","Erscheinungsjahr":1995,"Entwickler":"Brendan Eich","Typisierung":"schwach,dynamisch,duck","Paradigmen":"Multiparadigmen","StackoverflowTags":1317563},{"Name":"Kotlin","Erscheinungsjahr":2016,"Entwickler":"JetBrains","Typisierung":"statisch,stark","Paradigmen":"objektorientiert","StackoverflowTags":2046},{"Name":"Luna","Erscheinungsjahr":2011,"Entwickler":"Richard Gordon Faika","Typisierung":"statisch","Paradigmen":"Multiparadigmen","StackoverflowTags":0},{"Name":"Miranda","Erscheinungsjahr":1985,"Entwickler":"David Turner","Typisierung":"statisch,stark","Paradigmen":"funktional,nicht-strikt,deklarativ","StackoverflowTags":17},{"Name":"NewtonScript","Erscheinungsjahr":1993,"Entwickler":"Walter Smith","Typisierung":"keine","Paradigmen":"prototypenbasiert","StackoverflowTags":3},{"Name":"Objective-C","Erscheinungsjahr":1980,"Entwickler":"Brad Cox,Tom Love","Typisierung":"stark,statisch,explizit,dynamisch","Paradigmen":"Multiparadigmen","StackoverflowTags":273007},{"Name":"Oberon","Erscheinungsjahr":1991,"Entwickler":"Niklaus Wirth,Jürg Gutknecht","Typisierung":"statisch","Paradigmen":"imperativ,strukturiert,objektorientiert","StackoverflowTags":10},{"Name":"PHP","Erscheinungsjahr":1995,"Entwickler":"Rasmus Lerdorf","Typisierung":"schwach,dynamisch","Paradigmen":"imperativ,objektorientiert,funktional,reflexiv,prozedural","StackoverflowTags":1034846},{"Name":"Python","Erscheinungsjahr":1991,"Entwickler":"Guido van Rossum","Typisierung":"stark,dynamisch,duck","Paradigmen":"Multiparadigmen","StackoverflowTags":698807},{"Name":"QML","Erscheinungsjahr":2009,"Entwickler":"Qt Project","Typisierung":"stark,dynamisch","Paradigmen":"deklarativ,reaktiv","StackoverflowTags":5104},{"Name":"Ruby","Erscheinungsjahr":1995,"Entwickler":"Yukihiro Matsumoto","Typisierung":"stark,dynamisch,duck","Paradigmen":"Multiparadigmen","StackoverflowTags":176431},{"Name":"Smalltalk","Erscheinungsjahr":1972,"Entwickler":"Alan Kay,Dan Ingalls,Adele Goldberg,Ted Kaehler,Scott Wallace,Peter Deutsch","Typisierung":"dynamisch","Paradigmen":"Multiparadigmen","StackoverflowTags":1303},{"Name":"Scala","Erscheinungsjahr":2001,"Entwickler":"Martin Odersky","Typisierung":"statisch","Paradigmen":"objektorientiert,funktional,imperativ","StackoverflowTags":62222},{"Name":"TypeScript","Erscheinungsjahr":2012,"Entwickler":"Anders Hejlsberg","Typisierung":"stark,schwach,duck,dynamisch,statisch,explizit,implizit","Paradigmen":"funktional,imperativ,objektorientiert,strukturiert,skripting","StackoverflowTags":23187},{"Name":"Whitespace","Erscheinungsjahr":2002,"Entwickler":"Edwin Brady,Chris Morris","Typisierung":"imperativ","Paradigmen":"unknown","StackoverflowTags":2912},{"Name":"Zonnon","Erscheinungsjahr":2002,"Entwickler":"Jürg Gutknecht","Typisierung":"stark","Paradigmen":"imperativ,strukturiert,objektorientiert,modular","StackoverflowTags":0}]}
+{
+  "programmingLanguages": [
+    {
+      "Name": "Ada",
+      "Erscheinungsjahr": 1980,
+      "Entwickler": "Jean Ichbiah",
+      "Typisierung": "statisch,explizit,stark",
+      "Paradigmen": "imperativ,strukturiert,objektorientiert",
+      "StackoverflowTags": 1237
+    },
+    {
+      "Name": "BASIC",
+      "Erscheinungsjahr": 1964,
+      "Entwickler": "John G. Kemeny,Thomas E. Kurtz",
+      "Typisierung": "keine",
+      "Paradigmen": "imperativ",
+      "StackoverflowTags": 513
+    },
+    {
+      "Name": "C",
+      "Erscheinungsjahr": 1972,
+      "Entwickler": "Dennis Ritchie",
+      "Typisierung": "statisch,explizit,stark",
+      "Paradigmen": "imperativ,strukturiert",
+      "StackoverflowTags": 241709
+    },
+    {
+      "Name": "C++",
+      "Erscheinungsjahr": 1985,
+      "Entwickler": "Bjarne Stroustrup",
+      "Typisierung": "statisch,explizit,stark",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 497011
+    },
+    {
+      "Name": "C#",
+      "Erscheinungsjahr": 2001,
+      "Entwickler": "Anders Hejlsberg",
+      "Typisierung": "statisch,stark,explizit",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 1057423
+    },
+    {
+      "Name": "Delphi",
+      "Erscheinungsjahr": 1986,
+      "Entwickler": "Niklaus Wirth,Anders Hejlsberg",
+      "Typisierung": "stark,explizit,statisch",
+      "Paradigmen": "prozedural,objektorientiert",
+      "StackoverflowTags": 38021
+    },
+    {
+      "Name": "Erlang",
+      "Erscheinungsjahr": 1987,
+      "Entwickler": "Ericsson",
+      "Typisierung": "dynamisch,stark",
+      "Paradigmen": "Funktional,Concurrent",
+      "StackoverflowTags": 7177
+    },
+    {
+      "Name": "Fortran",
+      "Erscheinungsjahr": 1957,
+      "Entwickler": "John W. Backus",
+      "Typisierung": "statisch,stark",
+      "Paradigmen": "prozedural,imperativ,strukturiert,objektorientiert",
+      "StackoverflowTags": 7094
+    },
+    {
+      "Name": "Groovy",
+      "Erscheinungsjahr": 2003,
+      "Entwickler": "The Groovy Project",
+      "Typisierung": "stark,statisch,dynamisch",
+      "Paradigmen": "objektorientiert,teilweise deklarativ,imperativ",
+      "StackoverflowTags": 16643
+    },
+    {
+      "Name": "Haskell",
+      "Erscheinungsjahr": 1990,
+      "Entwickler": "Simon Peyton Jones,Paul Hudak,Philip Wadler",
+      "Typisierung": "statisch,stark,Typinferenz",
+      "Paradigmen": "funktional,nicht-strikt,modular,deklarativ",
+      "StackoverflowTags": 31329
+    },
+    {
+      "Name": "INTERCAL",
+      "Erscheinungsjahr": 1972,
+      "Entwickler": "Donald R. Woods,James M. Lyon",
+      "Typisierung": "keine",
+      "Paradigmen": "imperativ",
+      "StackoverflowTags": 2
+    },
+    {
+      "Name": "JavaScript",
+      "Erscheinungsjahr": 1995,
+      "Entwickler": "Brendan Eich",
+      "Typisierung": "schwach,dynamisch,duck",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 1317563
+    },
+    {
+      "Name": "Kotlin",
+      "Erscheinungsjahr": 2016,
+      "Entwickler": "JetBrains",
+      "Typisierung": "statisch,stark",
+      "Paradigmen": "objektorientiert",
+      "StackoverflowTags": 2046
+    },
+    {
+      "Name": "Luna",
+      "Erscheinungsjahr": 2011,
+      "Entwickler": "Richard Gordon Faika",
+      "Typisierung": "statisch",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 0
+    },
+    {
+      "Name": "Miranda",
+      "Erscheinungsjahr": 1985,
+      "Entwickler": "David Turner",
+      "Typisierung": "statisch,stark",
+      "Paradigmen": "funktional,nicht-strikt,deklarativ",
+      "StackoverflowTags": 17
+    },
+    {
+      "Name": "NewtonScript",
+      "Erscheinungsjahr": 1993,
+      "Entwickler": "Walter Smith",
+      "Typisierung": "keine",
+      "Paradigmen": "prototypenbasiert",
+      "StackoverflowTags": 3
+    },
+    {
+      "Name": "Objective-C",
+      "Erscheinungsjahr": 1980,
+      "Entwickler": "Brad Cox,Tom Love",
+      "Typisierung": "stark,statisch,explizit,dynamisch",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 273007
+    },
+    {
+      "Name": "Oberon",
+      "Erscheinungsjahr": 1991,
+      "Entwickler": "Niklaus Wirth,Jürg Gutknecht",
+      "Typisierung": "statisch",
+      "Paradigmen": "imperativ,strukturiert,objektorientiert",
+      "StackoverflowTags": 10
+    },
+    {
+      "Name": "PHP",
+      "Erscheinungsjahr": 1995,
+      "Entwickler": "Rasmus Lerdorf",
+      "Typisierung": "schwach,dynamisch",
+      "Paradigmen": "imperativ,objektorientiert,funktional,reflexiv,prozedural",
+      "StackoverflowTags": 1034846
+    },
+    {
+      "Name": "Python",
+      "Erscheinungsjahr": 1991,
+      "Entwickler": "Guido van Rossum",
+      "Typisierung": "stark,dynamisch,duck",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 698807
+    },
+    {
+      "Name": "QML",
+      "Erscheinungsjahr": 2009,
+      "Entwickler": "Qt Project",
+      "Typisierung": "stark,dynamisch",
+      "Paradigmen": "deklarativ,reaktiv",
+      "StackoverflowTags": 5104
+    },
+    {
+      "Name": "Ruby",
+      "Erscheinungsjahr": 1995,
+      "Entwickler": "Yukihiro Matsumoto",
+      "Typisierung": "stark,dynamisch,duck",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 176431
+    },
+    {
+      "Name": "Smalltalk",
+      "Erscheinungsjahr": 1972,
+      "Entwickler": "Alan Kay,Dan Ingalls,Adele Goldberg,Ted Kaehler,Scott Wallace,Peter Deutsch",
+      "Typisierung": "dynamisch",
+      "Paradigmen": "Multiparadigmen",
+      "StackoverflowTags": 1303
+    },
+    {
+      "Name": "Scala",
+      "Erscheinungsjahr": 2001,
+      "Entwickler": "Martin Odersky",
+      "Typisierung": "statisch",
+      "Paradigmen": "objektorientiert,funktional,imperativ",
+      "StackoverflowTags": 62222
+    },
+    {
+      "Name": "TypeScript",
+      "Erscheinungsjahr": 2012,
+      "Entwickler": "Anders Hejlsberg",
+      "Typisierung": "stark,schwach,duck,dynamisch,statisch,explizit,implizit",
+      "Paradigmen": "funktional,imperativ,objektorientiert,strukturiert,skripting",
+      "StackoverflowTags": 23187
+    },
+    {
+      "Name": "Whitespace",
+      "Erscheinungsjahr": 2002,
+      "Entwickler": "Edwin Brady,Chris Morris",
+      "Typisierung": "imperativ",
+      "Paradigmen": "unknown",
+      "StackoverflowTags": 2912
+    },
+    {
+      "Name": "Zonnon",
+      "Erscheinungsjahr": 2002,
+      "Entwickler": "Jürg Gutknecht",
+      "Typisierung": "stark",
+      "Paradigmen": "imperativ,strukturiert,objektorientiert,modular",
+      "StackoverflowTags": 0
+    }
+  ]
+}

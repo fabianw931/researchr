@@ -32,21 +32,8 @@ public class Language {
 
     }
 
-    public Language(String name, int publishedYear, String developer,
-                    String typing, String paradigms, int stackoverflowTags) {
-
-        setId(counter++);
-        setName(name);
-        setPublishedYear(publishedYear);
-        setDeveloper(developer);
-        setTyping(typing);
-        setParadigms(paradigms);
-        setStackoverflowTags(stackoverflowTags);
-
-    }
-
-    public Language() {
-        setId(counter++);
+    public Language(boolean b) {
+        if(b) setId(counter++);
         setPublishedYear(LocalDate.now().getYear());
     }
 
