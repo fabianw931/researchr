@@ -93,6 +93,13 @@ public class LanguagePM {
                 .orElse(null);
     }
 
+    public Language getLanguage(String name) {
+        return languages.stream()
+                .filter(Language -> Language.getName() == name)
+                .findAny()
+                .orElse(null);
+    }
+
     private static List<Language> getLanguages() {
         FileHandler fileHandler = new FileHandler();
         JsonArray jArr = fileHandler.read();
@@ -209,6 +216,7 @@ public class LanguagePM {
         setSelectedLanguageId(lang.getId());
 
         pieChartData.add(new PieChart.Data(lang.getName(), lang.getStackoverflowTags()));
+        pieChartData.get(pieChartData.size() - 1).nameProperty().bind(lang.nameProperty());
     }
 
     public void remove() {
@@ -348,29 +356,32 @@ public class LanguagePM {
         languageProxy.stackoverflowTagsProperty().bindBidirectional(language.stackoverflowTagsProperty());
     } 
 
-    public ObservableList<PieChart.Data> getPieChartData() {
-
-        for (Language l : languages()){
+    private void setPieChartData(){
+        for (Language l : languages()) {
             pieChartData.add(new PieChart.Data(l.getName(), l.getStackoverflowTags()));
+        }
+    }
+
+    public ObservableList<PieChart.Data> getPieChartData() {
+        if (pieChartData.isEmpty()){
+            setPieChartData();
         }
 
         return pieChartData;
     }
 
-    private void naiveAddData(String name, double value){
-        pieChartData.add(new PieChart.Data(name, value));
-    }
-
     public void updatePieChart(){
         String name = languages().get(getSelectedLanguageId() - 1).getName();
         int value = languages().get(getSelectedLanguageId() - 1).getStackoverflowTags();
+
         for(PieChart.Data d : pieChartData){
+            System.out.println(name);
+            System.out.println(d.getName());
             if(d.getName().equals(name)){
                 d.setPieValue(value);
                 return;
             }
         }
-        naiveAddData(name, value);
     }
 
 }

@@ -111,6 +111,10 @@ public class LanguageForm extends GridPane implements ViewMixin {
     public void addBindings() {
         Language proxy = model.getLanguageProxy();
 
+        model.getPieChartData().forEach(data ->
+                data.nameProperty().bind(model.getLanguage(data.getName()).nameProperty())
+        );
+
         title.textProperty().bindBidirectional(proxy.nameProperty());
         nameField.textProperty().bindBidirectional(proxy.nameProperty());
         publishedYearField.textProperty().bindBidirectional(proxy.publishedYearProperty(), new NumberStringConverter());
@@ -118,7 +122,6 @@ public class LanguageForm extends GridPane implements ViewMixin {
         typingField.textProperty().bindBidirectional(proxy.typingProperty());
         paradigmsField.textProperty().bindBidirectional(proxy.paradigmsProperty());
         stackoverflowTagsField.textProperty().bindBidirectional(proxy.stackoverflowTagsProperty(), new NumberStringConverter());
-
 
         stackoverflowTagsField.textProperty().addListener((observable, oldValue, newValue) -> {
             model.updatePieChart();
